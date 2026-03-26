@@ -624,7 +624,7 @@ footer{
 
 <!-- NAVBAR -->
 <nav id="navbar">
-  <a href="/" class="nav-logo" onclick="showHome()">
+  <a href="index.html" class="nav-logo">
     <span class="flame-icon">🔥</span>
     Gás<span>Network</span>
   </a>
@@ -784,7 +784,7 @@ footer{
         <div class="contact-icon">📧</div>
         <div>
           <div class="contact-label">E-mail</div>
-          <div class="contact-value"><a href="mailto:contato@gasnetwork.com.br" style="color:var(--off-white);text-decoration:none;">contato@gasnetwork.com.br</a></div>
+          <div class="contact-value"><a href="/cdn-cgi/l/email-protection#4625292832273229062127352823323129342d6825292b682434" style="color:var(--off-white);text-decoration:none;"><span class="__cf_email__" data-cfemail="4f2c20213b2e3b200f282e3c212a3b38203d24612c2022612d3d">[email&#160;protected]</span></a></div>
         </div>
       </div>
       <div class="contact-info-item">
@@ -888,7 +888,7 @@ footer{
       <h4>Contato</h4>
       <ul>
         <li><a href="tel:+5511985424462">(11) 98542-4462</a></li>
-        <li><a href="mailto:contato@gasnetwork.com.br">contato@gasnetwork.com.br</a></li>
+        <li><a href="/cdn-cgi/l/email-protection#f1929e9f8590859eb19690829f9485869e839adf929e9cdf9383"><span class="__cf_email__" data-cfemail="5734383923362338173036243932232038253c7934383a793525">[email&#160;protected]</span></a></li>
         <li><a href="#">www.gasnetwork.org</a></li>
         <li><a href="https://wa.me/5511985424462" target="_blank">WhatsApp</a></li>
       </ul>
@@ -903,7 +903,7 @@ footer{
 <!-- WhatsApp FAB -->
 <a href="https://wa.me/5511985424462?text=Olá! Preciso de um orçamento." target="_blank" class="whatsapp-fab" title="Falar no WhatsApp">💬</a>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ═══════════ DATA ═══════════
 
 const SERVICES = [
@@ -1019,15 +1019,18 @@ const BLOG_POSTS = [
 ];
 
 // ═══════════ RENDER SERVICES ═══════════
+const SERVICE_SLUGS = ["instalacao-rede-gas-gn", "instalacao-rede-gas-glp", "instalacao-tubulacao-cobre", "instalacao-tubulacao-pex", "adequacao-pontos-gas", "criacao-pontos-consumo", "remanejamento-pontos-gas", "substituicao-tubulacao-antiga", "instalacao-prumadas-gas", "instalacao-central-glp", "teste-estanqueidade", "emissao-laudo-tecnico", "vistoria-liberacao-comgas", "inspecao-predial-gas", "deteccao-vazamento-gas", "reparo-vazamentos", "manutencao-preventiva-gas", "adequacao-avcb", "elaboracao-projeto-gas", "consultoria-tecnica-gas", "aplicacao-resina-tubulacao", "ligacao-fogao-gas", "ligacao-cooktop-gas", "ligacao-forno-gas", "ligacao-aquecedor-gas", "conversao-fogao-glp-gn", "conversao-aquecedores", "regulagem-equipamentos-gas", "inspecao-apartamentos", "inspecao-condominios", "manutencao-corretiva-gas", "regularizacao-instalacoes", "substituicao-mangueiras-gas", "instalacao-reguladores-pressao", "instalacao-valvulas-bloqueio", "instalacao-valvulas-seguranca", "instalacao-medidores-gas", "emissao-art", "interligacao-rede-interna", "adequacao-central-glp-norma", "substituicao-conexoes", "limpeza-rede-gas", "instalacao-ramais-gas", "montagem-abrigo-cilindros", "adequacao-normas-abnt", "instalacao-prumadas-gas", "reparo-vazamentos", "manutencao-corretiva-gas", "limpeza-rede-gas", "instalacao-valvulas-seguranca"];
 function renderServices(){
   const grid = document.getElementById('servicesGrid');
-  grid.innerHTML = SERVICES.map(s=>`
-    <div class="service-card">
-      <div class="service-icon">${s.icon}</div>
-      <h3>${s.name}</h3>
-      <p>${s.desc}</p>
-    </div>
-  `).join('');
+  grid.innerHTML = SERVICES.map((s,i)=>{
+    const slug = SERVICE_SLUGS[i] || 'index';
+    return '<a href="'+slug+'.html" class="service-card" style="text-decoration:none;">'
+      +'<div class="service-icon">'+s.icon+'</div>'
+      +'<h3>'+s.name+'</h3>'
+      +'<p>'+s.desc+'</p>'
+      +'<div style="margin-top:12px;font-size:.8rem;color:var(--flame-light);font-weight:600;">Ver detalhes &rarr;</div>'
+      +'</a>';
+  }).join('');
 }
 
 // ═══════════ RENDER BLOG ═══════════
@@ -1181,19 +1184,4 @@ function toggleNav(){
   links.style.display = links.style.display==='flex'?'none':'flex';
   links.style.flexDirection='column';
   links.style.position='absolute';
-  links.style.top='68px';links.style.left='0';links.style.right='0';
-  links.style.background='rgba(13,27,42,.98)';
-  links.style.padding='20px 5%';
-  links.style.borderBottom='1px solid rgba(232,93,4,.2)';
-  links.style.zIndex='850';
-}
-
-// ═══════════ INIT ═══════════
-document.addEventListener('DOMContentLoaded',()=>{
-  renderServices();
-  renderBlogCats();
-  renderBlog();
-});
-</script>
-</body>
-</html>
+  links.style.top='68px';links.style.left='0';lin
