@@ -613,6 +613,37 @@ footer{
   .hero-stats{gap:24px;}
   .stat-num{font-size:1.5rem;}
 }
+
+.service-page{display:none;min-height:100vh;}
+.service-page.active{display:block;}
+.sp-hero{background:linear-gradient(135deg,var(--steel-mid),var(--steel));padding:50px 5% 40px;border-bottom:1px solid rgba(255,255,255,.05);position:relative;overflow:hidden;}
+.sp-hero::after{content:'';position:absolute;right:-100px;top:50%;transform:translateY(-50%);width:400px;height:400px;background:radial-gradient(ellipse,rgba(232,93,4,.1),transparent 70%);border-radius:50%;}
+.sp-back{display:inline-flex;align-items:center;gap:8px;color:var(--flame-light);font-size:.85rem;font-weight:600;text-decoration:none;margin-bottom:20px;cursor:pointer;background:none;border:none;}
+.sp-label{display:block;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--flame);margin-bottom:10px;}
+.sp-hero h1{font-family:'Syne',sans-serif;font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:800;line-height:1.1;margin-bottom:14px;position:relative;z-index:1;}
+.sp-hero p{color:var(--warm-gray);font-size:1rem;line-height:1.7;max-width:600px;margin-bottom:24px;position:relative;z-index:1;}
+.sp-norm{display:inline-flex;align-items:center;gap:8px;background:rgba(232,93,4,.1);border:1px solid rgba(232,93,4,.2);color:var(--flame-light);padding:5px 14px;border-radius:4px;font-size:.78rem;font-weight:600;position:relative;z-index:1;}
+.sp-body{display:grid;grid-template-columns:1fr 1fr;gap:50px;padding:60px 5%;align-items:start;}
+@media(max-width:768px){.sp-body{grid-template-columns:1fr;padding:40px 5%;}}
+.sp-section-label{display:block;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--flame);margin-bottom:12px;}
+.sp-h2{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;color:var(--off-white);margin-bottom:18px;}
+.sp-benefits{list-style:none;}
+.sp-benefits li{display:flex;align-items:flex-start;gap:12px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:.9rem;color:var(--warm-gray);}
+.sp-check{color:var(--flame);font-weight:700;flex-shrink:0;}
+.sp-process-card{background:var(--steel-mid);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:28px;}
+.sp-steps{list-style:none;}
+.sp-steps li{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:.9rem;color:var(--warm-gray);}
+.sp-steps li:last-child{border-bottom:none;}
+.sp-num{width:26px;height:26px;background:var(--flame);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:#fff;flex-shrink:0;}
+.sp-faq{background:var(--steel-mid);padding:60px 5%;}
+.sp-faq-grid{max-width:820px;margin:0 auto;}
+.sp-faq-item{background:var(--steel);border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:20px;margin-bottom:12px;}
+.sp-faq-q{font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700;color:var(--off-white);margin-bottom:8px;}
+.sp-faq-a{font-size:.88rem;color:var(--text-muted);line-height:1.7;}
+.sp-cta{background:linear-gradient(135deg,var(--steel),var(--steel-mid));padding:60px 5%;text-align:center;border-top:1px solid rgba(232,93,4,.15);}
+.sp-cta h2{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;margin-bottom:12px;}
+.sp-cta p{color:var(--text-muted);margin-bottom:26px;}
+
 </style>
 </head>
 <body>
@@ -1019,21 +1050,19 @@ const BLOG_POSTS = [
 ];
 
 // ═══════════ RENDER SERVICES ═══════════
-const SERVICE_SLUGS = ["instalacao-rede-gas-gn","instalacao-rede-gas-glp","instalacao-tubulacao-cobre","instalacao-tubulacao-pex","adequacao-pontos-gas","criacao-pontos-consumo","remanejamento-pontos-gas","substituicao-tubulacao-antiga","instalacao-prumadas-gas","instalacao-central-glp","teste-estanqueidade","emissao-laudo-tecnico","vistoria-liberacao-comgas","inspecao-predial-gas","deteccao-vazamento-gas","reparo-vazamentos","manutencao-preventiva-gas","adequacao-avcb","elaboracao-projeto-gas","consultoria-tecnica-gas","aplicacao-resina-tubulacao","ligacao-fogao-gas","ligacao-cooktop-gas","ligacao-forno-gas","ligacao-aquecedor-gas","conversao-fogao-glp-gn","conversao-aquecedores","regulagem-equipamentos-gas","inspecao-apartamentos","inspecao-condominios","manutencao-corretiva-gas","regularizacao-instalacoes","substituicao-mangueiras-gas","instalacao-reguladores-pressao","instalacao-valvulas-bloqueio","instalacao-valvulas-seguranca","instalacao-medidores-gas","emissao-art","interligacao-rede-interna","adequacao-central-glp-norma","substituicao-conexoes","limpeza-rede-gas","instalacao-ramais-gas","montagem-abrigo-cilindros","adequacao-normas-abnt","instalacao-prumadas-gas","reparo-vazamentos","manutencao-corretiva-gas","limpeza-rede-gas","instalacao-valvulas-seguranca"];
 
+const SERVICE_SLUGS = [];
 function renderServices(){
   const grid = document.getElementById('servicesGrid');
-  grid.innerHTML = SERVICES.map(function(s,i){
-    var slug = SERVICE_SLUGS[i] || 'index';
-    return '<a href="'+slug+'.html" class="service-card" style="text-decoration:none;display:block;">'
+  grid.innerHTML = ALL_SERVICES.map(function(s,i){
+    return '<div class="service-card" onclick="openServicePage('+i+')" style="cursor:pointer;">'
       +'<div class="service-icon">'+s.icon+'</div>'
       +'<h3>'+s.name+'</h3>'
       +'<p>'+s.desc+'</p>'
       +'<div style="margin-top:12px;font-size:.8rem;color:var(--flame-light);font-weight:600;">Ver detalhes &#8594;</div>'
-      +'</a>';
+      +'</div>';
   }).join('');
 }
-
 
 function renderBlogCats(){
   const cats = document.getElementById('blogCats');
