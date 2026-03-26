@@ -1,1214 +1,583 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Gás Network Engenharia – Instalação e Manutenção de Gás em São Paulo</title>
-<meta name="description" content="Gás Network Engenharia – empresa homologada Comgás, certificada ABRINSTAL. Instalação, manutenção e inspeção de redes de gás em São Paulo e Grande SP. Engenheiro responsável, ART e laudo técnico."/>
-<meta name="keywords" content="instalação de gás São Paulo, rede de gás, empresa de gás SP, homologada Comgás, manutenção de gás, inspeção de gás, engenheiro de gás"/>
-<meta property="og:title" content="Gás Network Engenharia – Instalação e Manutenção de Gás em SP"/>
-<meta property="og:description" content="Empresa homologada Comgás e certificada ABRINSTAL. Atendimento 24h em São Paulo e Grande SP."/>
-<meta property="og:type" content="website"/>
-<meta property="og:url" content="https://www.gasnetwork.org"/>
-<link rel="canonical" href="https://www.gasnetwork.org"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
-<style>
-:root{
-  --flame:#E85D04;
-  --flame-dark:#C44D00;
-  --flame-light:#FF7A2F;
-  --steel:#0D1B2A;
-  --steel-mid:#1A2E42;
-  --steel-light:#243B55;
-  --off-white:#F5F0E8;
-  --warm-gray:#D4CEC4;
-  --text-muted:#8A8078;
-  --accent-blue:#1B6CA8;
-}
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{
-  font-family:'DM Sans',sans-serif;
-  background:var(--steel);
-  color:var(--off-white);
-  overflow-x:hidden;
-}
-
-/* ── NOISE TEXTURE OVERLAY ── */
-body::before{
-  content:'';
-  position:fixed;inset:0;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-  pointer-events:none;z-index:1000;opacity:.4;
-}
-
-/* ── TOPBAR ── */
-.topbar{
-  background:var(--flame);
-  padding:6px 0;
-  text-align:center;
-  font-size:.78rem;
-  font-weight:500;
-  letter-spacing:.04em;
-  color:#fff;
-}
-.topbar a{color:#fff;text-decoration:none;font-weight:700;}
-
-/* ── NAVBAR ── */
-nav{
-  position:sticky;top:0;z-index:900;
-  background:rgba(13,27,42,.97);
-  backdrop-filter:blur(12px);
-  border-bottom:1px solid rgba(232,93,4,.15);
-  padding:0 5%;
-  display:flex;align-items:center;justify-content:space-between;
-  height:68px;
-}
-.nav-logo{
-  font-family:'Syne',sans-serif;
-  font-size:1.35rem;font-weight:800;
-  color:var(--off-white);
-  text-decoration:none;
-  display:flex;align-items:center;gap:10px;
-}
-.nav-logo span{color:var(--flame);}
-.flame-icon{font-size:1.5rem;}
-.nav-links{display:flex;gap:28px;list-style:none;}
-.nav-links a{
-  color:var(--warm-gray);
-  text-decoration:none;
-  font-size:.9rem;font-weight:500;
-  transition:color .2s;
-}
-.nav-links a:hover{color:var(--flame);}
-.nav-cta{
-  background:var(--flame);
-  color:#fff!important;
-  padding:8px 20px;
-  border-radius:4px;
-  font-weight:700!important;
-  font-size:.85rem!important;
-  transition:background .2s!important;
-}
-.nav-cta:hover{background:var(--flame-dark)!important;color:#fff!important;}
-
-/* ── HERO ── */
-.hero{
-  min-height:92vh;
-  display:flex;align-items:center;
-  position:relative;
-  overflow:hidden;
-  padding:80px 5% 60px;
-}
-.hero-bg{
-  position:absolute;inset:0;
-  background:linear-gradient(135deg,var(--steel) 0%,var(--steel-mid) 50%,#1a1a2e 100%);
-}
-.hero-flame-blob{
-  position:absolute;
-  right:-100px;top:50%;transform:translateY(-50%);
-  width:600px;height:600px;
-  background:radial-gradient(ellipse,rgba(232,93,4,.18) 0%,transparent 70%);
-  border-radius:50%;
-}
-.hero-grid-lines{
-  position:absolute;inset:0;
-  background-image:
-    linear-gradient(rgba(232,93,4,.04) 1px, transparent 1px),
-    linear-gradient(90deg,rgba(232,93,4,.04) 1px, transparent 1px);
-  background-size:60px 60px;
-}
-.hero-content{position:relative;z-index:2;max-width:720px;}
-.hero-badge{
-  display:inline-flex;align-items:center;gap:8px;
-  background:rgba(232,93,4,.12);
-  border:1px solid rgba(232,93,4,.3);
-  color:var(--flame-light);
-  padding:6px 16px;border-radius:999px;
-  font-size:.8rem;font-weight:600;letter-spacing:.06em;
-  margin-bottom:28px;
-  text-transform:uppercase;
-}
-.hero h1{
-  font-family:'Syne',sans-serif;
-  font-size:clamp(2.4rem,5vw,4rem);
-  font-weight:800;
-  line-height:1.1;
-  margin-bottom:22px;
-  color:var(--off-white);
-}
-.hero h1 em{
-  font-style:normal;
-  color:var(--flame);
-  display:block;
-}
-.hero-sub{
-  font-size:1.05rem;
-  color:var(--warm-gray);
-  line-height:1.7;
-  max-width:560px;
-  margin-bottom:40px;
-}
-.hero-actions{display:flex;gap:16px;flex-wrap:wrap;}
-.btn-primary{
-  display:inline-flex;align-items:center;gap:8px;
-  background:var(--flame);
-  color:#fff;
-  padding:14px 28px;
-  border-radius:5px;
-  font-weight:700;font-size:.95rem;
-  text-decoration:none;
-  transition:all .2s;
-  border:none;cursor:pointer;
-}
-.btn-primary:hover{background:var(--flame-dark);transform:translateY(-1px);}
-.btn-outline{
-  display:inline-flex;align-items:center;gap:8px;
-  border:1.5px solid rgba(232,93,4,.5);
-  color:var(--flame-light);
-  padding:14px 28px;
-  border-radius:5px;
-  font-weight:600;font-size:.95rem;
-  text-decoration:none;
-  transition:all .2s;
-}
-.btn-outline:hover{border-color:var(--flame);background:rgba(232,93,4,.08);}
-.hero-stats{
-  display:flex;gap:40px;flex-wrap:wrap;
-  margin-top:56px;
-  padding-top:40px;
-  border-top:1px solid rgba(255,255,255,.07);
-}
-.stat-item{}
-.stat-num{
-  font-family:'Syne',sans-serif;
-  font-size:2rem;font-weight:800;
-  color:var(--flame);
-  display:block;
-}
-.stat-label{font-size:.82rem;color:var(--text-muted);font-weight:500;letter-spacing:.03em;}
-
-/* ── TRUST LOGOS ── */
-.trust-bar{
-  background:var(--steel-mid);
-  border-top:1px solid rgba(255,255,255,.05);
-  border-bottom:1px solid rgba(255,255,255,.05);
-  padding:24px 5%;
-  display:flex;align-items:center;gap:40px;flex-wrap:wrap;justify-content:center;
-}
-.trust-item{
-  display:flex;align-items:center;gap:10px;
-  color:var(--text-muted);
-  font-size:.85rem;font-weight:500;
-}
-.trust-icon{font-size:1.3rem;}
-
-/* ── SECTION BASE ── */
-section{padding:80px 5%;}
-.section-label{
-  display:inline-block;
-  font-size:.75rem;font-weight:700;letter-spacing:.12em;
-  text-transform:uppercase;
-  color:var(--flame);
-  margin-bottom:14px;
-}
-.section-title{
-  font-family:'Syne',sans-serif;
-  font-size:clamp(1.8rem,3.5vw,2.8rem);
-  font-weight:800;
-  color:var(--off-white);
-  line-height:1.15;
-  margin-bottom:16px;
-}
-.section-sub{
-  color:var(--text-muted);
-  font-size:1rem;
-  line-height:1.7;
-  max-width:560px;
-}
-
-/* ── SERVICES ── */
-#servicos{background:var(--steel-mid);}
-.services-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
-  gap:20px;
-  margin-top:48px;
-}
-.service-card{
-  background:var(--steel);
-  border:1px solid rgba(255,255,255,.06);
-  border-radius:8px;
-  padding:24px;
-  transition:all .25s;
-  cursor:default;
-  position:relative;
-  overflow:hidden;
-}
-.service-card::before{
-  content:'';
-  position:absolute;top:0;left:0;right:0;height:2px;
-  background:var(--flame);
-  transform:scaleX(0);transform-origin:left;
-  transition:transform .3s;
-}
-.service-card:hover{
-  border-color:rgba(232,93,4,.3);
-  transform:translateY(-3px);
-  box-shadow:0 12px 40px rgba(0,0,0,.3);
-}
-.service-card:hover::before{transform:scaleX(1);}
-.service-icon{font-size:1.8rem;margin-bottom:14px;}
-.service-card h3{
-  font-family:'Syne',sans-serif;
-  font-size:1rem;font-weight:700;
-  color:var(--off-white);
-  margin-bottom:8px;
-  line-height:1.3;
-}
-.service-card p{
-  font-size:.85rem;
-  color:var(--text-muted);
-  line-height:1.6;
-}
-
-/* ── ABOUT ── */
-#sobre{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:80px;
-  align-items:center;
-}
-@media(max-width:768px){#sobre{grid-template-columns:1fr;gap:40px;}}
-.about-visual{
-  background:var(--steel-mid);
-  border:1px solid rgba(255,255,255,.06);
-  border-radius:12px;
-  padding:40px;
-  position:relative;
-}
-.about-card-accent{
-  position:absolute;top:-1px;left:40px;right:40px;height:3px;
-  background:linear-gradient(90deg,var(--flame),var(--flame-light),transparent);
-  border-radius:0 0 4px 4px;
-}
-.cert-item{
-  display:flex;align-items:center;gap:14px;
-  padding:16px 0;
-  border-bottom:1px solid rgba(255,255,255,.05);
-}
-.cert-item:last-child{border-bottom:none;}
-.cert-dot{
-  width:10px;height:10px;border-radius:50%;
-  background:var(--flame);flex-shrink:0;
-}
-.cert-text{font-size:.9rem;color:var(--warm-gray);}
-.norms-list{
-  display:flex;flex-wrap:wrap;gap:10px;
-  margin-top:24px;
-}
-.norm-tag{
-  background:rgba(232,93,4,.1);
-  border:1px solid rgba(232,93,4,.2);
-  color:var(--flame-light);
-  padding:5px 14px;border-radius:4px;
-  font-size:.78rem;font-weight:600;
-  font-family:'Syne',sans-serif;
-}
-
-/* ── BLOG ── */
-#blog{background:var(--steel-mid);}
-.blog-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
-  gap:24px;
-  margin-top:48px;
-}
-.blog-card{
-  background:var(--steel);
-  border:1px solid rgba(255,255,255,.06);
-  border-radius:8px;
-  overflow:hidden;
-  transition:all .25s;
-  text-decoration:none;
-  display:flex;flex-direction:column;
-}
-.blog-card:hover{
-  border-color:rgba(232,93,4,.25);
-  transform:translateY(-3px);
-  box-shadow:0 16px 40px rgba(0,0,0,.35);
-}
-.blog-card-img{
-  height:160px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:3.5rem;
-  position:relative;
-  overflow:hidden;
-}
-.blog-card-body{padding:22px;flex:1;display:flex;flex-direction:column;}
-.blog-cat{
-  font-size:.72rem;font-weight:700;letter-spacing:.1em;
-  text-transform:uppercase;
-  color:var(--flame);
-  margin-bottom:10px;
-}
-.blog-card h3{
-  font-family:'Syne',sans-serif;
-  font-size:1rem;font-weight:700;
-  color:var(--off-white);
-  line-height:1.4;
-  margin-bottom:10px;
-}
-.blog-excerpt{
-  font-size:.84rem;color:var(--text-muted);
-  line-height:1.6;flex:1;
-}
-.blog-footer{
-  display:flex;align-items:center;justify-content:space-between;
-  margin-top:16px;
-  padding-top:14px;
-  border-top:1px solid rgba(255,255,255,.05);
-}
-.blog-read{
-  font-size:.78rem;color:var(--flame-light);font-weight:600;
-}
-.blog-date{font-size:.75rem;color:var(--text-muted);}
-
-/* ── BLOG CATEGORIES ── */
-.blog-cats{
-  display:flex;flex-wrap:wrap;gap:10px;
-  margin-bottom:36px;
-}
-.cat-btn{
-  padding:7px 18px;border-radius:4px;
-  border:1.5px solid rgba(255,255,255,.1);
-  background:transparent;
-  color:var(--warm-gray);font-size:.83rem;font-weight:600;
-  cursor:pointer;transition:all .2s;
-  font-family:'DM Sans',sans-serif;
-}
-.cat-btn:hover,.cat-btn.active{
-  background:var(--flame);border-color:var(--flame);color:#fff;
-}
-
-/* ── CONTACT ── */
-#contato{
-  background:linear-gradient(135deg,var(--steel) 0%,var(--steel-light) 100%);
-  position:relative;overflow:hidden;
-}
-#contato::before{
-  content:'';
-  position:absolute;right:-200px;bottom:-200px;
-  width:500px;height:500px;
-  background:radial-gradient(ellipse,rgba(232,93,4,.12),transparent 70%);
-  border-radius:50%;
-}
-.contact-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:60px;
-  align-items:start;
-}
-@media(max-width:768px){.contact-grid{grid-template-columns:1fr;}}
-.contact-info-item{
-  display:flex;align-items:flex-start;gap:16px;
-  margin-bottom:28px;
-}
-.contact-icon{
-  width:44px;height:44px;
-  background:rgba(232,93,4,.12);
-  border:1px solid rgba(232,93,4,.2);
-  border-radius:8px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.2rem;flex-shrink:0;
-}
-.contact-label{font-size:.78rem;color:var(--text-muted);font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px;}
-.contact-value{font-size:.95rem;color:var(--off-white);font-weight:500;}
-.contact-form{
-  background:var(--steel-mid);
-  border:1px solid rgba(255,255,255,.06);
-  border-radius:10px;
-  padding:32px;
-}
-.form-group{margin-bottom:18px;}
-.form-group label{
-  display:block;font-size:.8rem;font-weight:600;
-  color:var(--warm-gray);margin-bottom:7px;letter-spacing:.04em;
-}
-.form-group input,
-.form-group textarea,
-.form-group select{
-  width:100%;
-  background:var(--steel);
-  border:1px solid rgba(255,255,255,.1);
-  border-radius:5px;
-  padding:11px 14px;
-  color:var(--off-white);
-  font-family:'DM Sans',sans-serif;
-  font-size:.9rem;
-  transition:border-color .2s;
-  outline:none;
-}
-.form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus{border-color:var(--flame);}
-.form-group select option{background:var(--steel-mid);}
-.form-group textarea{resize:vertical;min-height:100px;}
-.form-submit{
-  width:100%;
-  background:var(--flame);
-  border:none;
-  padding:13px;border-radius:5px;
-  color:#fff;font-weight:700;font-size:.95rem;
-  cursor:pointer;transition:background .2s;
-  font-family:'DM Sans',sans-serif;
-}
-.form-submit:hover{background:var(--flame-dark);}
-
-/* ── FOOTER ── */
-footer{
-  background:#070F18;
-  padding:48px 5% 28px;
-  border-top:1px solid rgba(232,93,4,.15);
-}
-.footer-grid{
-  display:grid;
-  grid-template-columns:1.8fr 1fr 1fr 1fr;
-  gap:40px;
-  margin-bottom:40px;
-}
-@media(max-width:900px){.footer-grid{grid-template-columns:1fr 1fr;}}
-@media(max-width:560px){.footer-grid{grid-template-columns:1fr;}}
-.footer-brand p{
-  font-size:.85rem;color:var(--text-muted);
-  line-height:1.7;margin-top:14px;max-width:260px;
-}
-.footer-col h4{
-  font-family:'Syne',sans-serif;
-  font-size:.85rem;font-weight:700;
-  color:var(--off-white);
-  margin-bottom:16px;
-  letter-spacing:.04em;
-}
-.footer-col ul{list-style:none;}
-.footer-col ul li{margin-bottom:9px;}
-.footer-col ul li a{
-  font-size:.84rem;color:var(--text-muted);
-  text-decoration:none;transition:color .2s;
-}
-.footer-col ul li a:hover{color:var(--flame);}
-.footer-bottom{
-  border-top:1px solid rgba(255,255,255,.06);
-  padding-top:22px;
-  display:flex;align-items:center;justify-content:space-between;
-  flex-wrap:wrap;gap:12px;
-}
-.footer-bottom p{font-size:.8rem;color:var(--text-muted);}
-.footer-bottom a{color:var(--flame);text-decoration:none;}
-
-/* ── WHATSAPP FAB ── */
-.whatsapp-fab{
-  position:fixed;bottom:28px;right:28px;z-index:800;
-  width:58px;height:58px;
-  background:#25D366;
-  border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.6rem;
-  text-decoration:none;
-  box-shadow:0 4px 20px rgba(37,211,102,.4);
-  transition:transform .2s,box-shadow .2s;
-}
-.whatsapp-fab:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(37,211,102,.55);}
-
-/* ── ARTICLE PAGE ── */
-.article-page{display:none;}
-.article-page.active{display:block;}
-.article-hero{
-  background:var(--steel-mid);
-  padding:60px 5% 40px;
-  border-bottom:1px solid rgba(255,255,255,.06);
-}
-.article-breadcrumb{
-  display:flex;align-items:center;gap:8px;
-  font-size:.82rem;color:var(--text-muted);
-  margin-bottom:20px;
-}
-.article-breadcrumb a{color:var(--flame);text-decoration:none;}
-.article-hero h1{
-  font-family:'Syne',sans-serif;
-  font-size:clamp(1.6rem,3.5vw,2.8rem);
-  font-weight:800;
-  color:var(--off-white);
-  line-height:1.2;
-  max-width:800px;
-  margin-bottom:16px;
-}
-.article-meta{display:flex;gap:20px;flex-wrap:wrap;align-items:center;}
-.article-meta span{font-size:.83rem;color:var(--text-muted);}
-.article-meta strong{color:var(--flame);}
-.article-body{
-  max-width:780px;
-  margin:0 auto;
-  padding:50px 5%;
-}
-.article-body h2{
-  font-family:'Syne',sans-serif;
-  font-size:1.5rem;font-weight:700;
-  color:var(--off-white);
-  margin:36px 0 14px;
-}
-.article-body h3{
-  font-family:'Syne',sans-serif;
-  font-size:1.1rem;font-weight:700;
-  color:var(--flame-light);
-  margin:28px 0 10px;
-}
-.article-body p{
-  color:var(--warm-gray);
-  line-height:1.8;font-size:.97rem;
-  margin-bottom:16px;
-}
-.article-body ul{
-  list-style:none;margin-bottom:20px;
-}
-.article-body ul li{
-  color:var(--warm-gray);font-size:.95rem;
-  line-height:1.7;padding:5px 0 5px 20px;
-  position:relative;
-}
-.article-body ul li::before{
-  content:'▸';color:var(--flame);
-  position:absolute;left:0;
-}
-.article-cta-box{
-  background:rgba(232,93,4,.08);
-  border:1px solid rgba(232,93,4,.25);
-  border-radius:8px;
-  padding:28px;margin:36px 0;
-}
-.article-cta-box h4{
-  font-family:'Syne',sans-serif;
-  font-size:1.1rem;font-weight:700;
-  color:var(--off-white);margin-bottom:10px;
-}
-.article-cta-box p{color:var(--text-muted);font-size:.9rem;margin-bottom:18px;}
-
-/* ── ANIMATIONS ── */
-@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
-.fade-up{animation:fadeUp .6s ease forwards;}
-.fade-up-delay-1{animation-delay:.1s;opacity:0;}
-.fade-up-delay-2{animation-delay:.2s;opacity:0;}
-.fade-up-delay-3{animation-delay:.3s;opacity:0;}
-
-/* ── MOBILE NAV ── */
-.hamburger{
-  display:none;background:none;border:none;
-  color:var(--off-white);font-size:1.5rem;cursor:pointer;
-}
-@media(max-width:768px){
-  .nav-links{display:none;}.hamburger{display:block;}
-  .hero h1{font-size:2rem;}
-  .hero-stats{gap:24px;}
-  .stat-num{font-size:1.5rem;}
-}
-
-.service-page{display:none;min-height:100vh;}
-.service-page.active{display:block;}
-.sp-hero{background:linear-gradient(135deg,var(--steel-mid),var(--steel));padding:50px 5% 40px;border-bottom:1px solid rgba(255,255,255,.05);position:relative;overflow:hidden;}
-.sp-hero::after{content:'';position:absolute;right:-100px;top:50%;transform:translateY(-50%);width:400px;height:400px;background:radial-gradient(ellipse,rgba(232,93,4,.1),transparent 70%);border-radius:50%;}
-.sp-back{display:inline-flex;align-items:center;gap:8px;color:var(--flame-light);font-size:.85rem;font-weight:600;text-decoration:none;margin-bottom:20px;cursor:pointer;background:none;border:none;}
-.sp-label{display:block;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--flame);margin-bottom:10px;}
-.sp-hero h1{font-family:'Syne',sans-serif;font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:800;line-height:1.1;margin-bottom:14px;position:relative;z-index:1;}
-.sp-hero p{color:var(--warm-gray);font-size:1rem;line-height:1.7;max-width:600px;margin-bottom:24px;position:relative;z-index:1;}
-.sp-norm{display:inline-flex;align-items:center;gap:8px;background:rgba(232,93,4,.1);border:1px solid rgba(232,93,4,.2);color:var(--flame-light);padding:5px 14px;border-radius:4px;font-size:.78rem;font-weight:600;position:relative;z-index:1;}
-.sp-body{display:grid;grid-template-columns:1fr 1fr;gap:50px;padding:60px 5%;align-items:start;}
-@media(max-width:768px){.sp-body{grid-template-columns:1fr;padding:40px 5%;}}
-.sp-section-label{display:block;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--flame);margin-bottom:12px;}
-.sp-h2{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;color:var(--off-white);margin-bottom:18px;}
-.sp-benefits{list-style:none;}
-.sp-benefits li{display:flex;align-items:flex-start;gap:12px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:.9rem;color:var(--warm-gray);}
-.sp-check{color:var(--flame);font-weight:700;flex-shrink:0;}
-.sp-process-card{background:var(--steel-mid);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:28px;}
-.sp-steps{list-style:none;}
-.sp-steps li{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:.9rem;color:var(--warm-gray);}
-.sp-steps li:last-child{border-bottom:none;}
-.sp-num{width:26px;height:26px;background:var(--flame);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:#fff;flex-shrink:0;}
-.sp-faq{background:var(--steel-mid);padding:60px 5%;}
-.sp-faq-grid{max-width:820px;margin:0 auto;}
-.sp-faq-item{background:var(--steel);border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:20px;margin-bottom:12px;}
-.sp-faq-q{font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700;color:var(--off-white);margin-bottom:8px;}
-.sp-faq-a{font-size:.88rem;color:var(--text-muted);line-height:1.7;}
-.sp-cta{background:linear-gradient(135deg,var(--steel),var(--steel-mid));padding:60px 5%;text-align:center;border-top:1px solid rgba(232,93,4,.15);}
-.sp-cta h2{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;margin-bottom:12px;}
-.sp-cta p{color:var(--text-muted);margin-bottom:26px;}
-
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IntegriTest - Avaliacao de Integridade Comportamental</title>
+  <meta name="description" content="Teste sua integridade e honestidade com 7 cenarios reais. Receba seu certificado oficial." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚖️</text></svg>" />
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:#08080f;overflow-x:hidden}
+    .fi{animation:fu .5s ease-out forwards}.fo{animation:fO .35s ease-in forwards}
+    @keyframes fu{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes fO{from{opacity:1}to{opacity:0;transform:translateY(-12px)}}
+    @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(200,170,120,.25)}50%{box-shadow:0 0 0 14px rgba(200,170,120,0)}}
+    @keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+    @keyframes scIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+    @keyframes bG{from{width:0%}}
+    @keyframes sp{to{transform:rotate(360deg)}}
+    .gt{background:linear-gradient(90deg,#c8aa78,#e8d5b0,#c8aa78);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 3s linear infinite}
+    .ef{animation:float 3s ease-in-out infinite}
+    .ob{width:100%;text-align:left;padding:16px 20px;border:1.5px solid rgba(200,170,120,.12);border-radius:14px;background:rgba(255,255,255,.02);color:#d4d0c8;font-family:'DM Sans',sans-serif;font-size:14.5px;line-height:1.55;cursor:pointer;transition:all .3s}
+    .ob:hover:not(.sl):not(.ds){border-color:rgba(200,170,120,.45);background:rgba(200,170,120,.06);transform:translateX(4px)}
+    .ob.sl{border-color:rgba(200,170,120,.65);background:rgba(200,170,120,.1)}
+    .ob.ds{cursor:default;opacity:.45}.ob.ds.sl{opacity:1}
+    .ni{width:100%;padding:16px 20px;border:1.5px solid rgba(200,170,120,.2);border-radius:12px;background:rgba(255,255,255,.03);color:#e8d5b0;font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;text-align:center;outline:none;transition:all .3s;letter-spacing:.02em}
+    .ni::placeholder{color:rgba(200,170,120,.25);font-weight:400}
+    .ni:focus{border-color:rgba(200,170,120,.55);background:rgba(200,170,120,.04)}
+    .ni.er{border-color:rgba(239,68,68,.6)}
+    .pb{font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;padding:15px 44px;border:none;border-radius:50px;background:linear-gradient(135deg,#c8aa78,#a68b5c);color:#0a0a0f;cursor:pointer;letter-spacing:.05em;transition:all .3s;display:inline-flex;align-items:center;gap:8px}
+    .pb:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(200,170,120,.2)}
+    .pb:disabled{opacity:.6;cursor:wait}
+    .gb{font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;padding:13px 36px;border:1.5px solid rgba(200,170,120,.3);border-radius:50px;background:transparent;color:#c8aa78;cursor:pointer;letter-spacing:.04em;transition:all .3s}
+    .gb:hover{background:rgba(200,170,120,.08);border-color:rgba(200,170,120,.55)}
+    .ps{height:4px;border-radius:2px;flex:1;transition:background .5s}
+    ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(200,170,120,.2);border-radius:2px}
+  </style>
 </head>
 <body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { useState, useEffect, useCallback, useRef } = React;
 
-<!-- TOPBAR -->
-<div class="topbar">
-  📞 Atendimento 24h: <a href="tel:+5511985424462">(11) 98542-4462</a> &nbsp;|&nbsp; Homologada Comgás &nbsp;|&nbsp; Certificada ABRINSTAL
-</div>
+    const questions = [
+      {
+        id: 1, scenario: "O Troco Errado", icon: "\u{1F4B0}",
+        situation: "Voce compra um cafe de R$8 e paga com uma nota de R$20. O caixa, visivelmente cansado apos um turno longo, te devolve R$32 de troco \u2014 ele confundiu sua nota de R$20 com uma de R$50. Ninguem mais percebeu.",
+        options: [
+          { text: "Devolvo o troco excedente imediatamente e aviso o caixa do engano.", score: 10, feedback: "Atitude exemplar! Honestidade mesmo quando ninguem esta olhando e a forma mais pura de integridade." },
+          { text: "Fico com o dinheiro, mas me sinto um pouco culpado depois.", score: 3, feedback: "A culpa mostra que voce sabe o certo, mas nao agiu conforme sua consciencia." },
+          { text: "Devolvo, mas so porque tenho medo de cameras de seguranca.", score: 5, feedback: "Voce fez o certo, mas a motivacao foi o medo, nao a integridade genuina." },
+          { text: "Guardo o dinheiro \u2014 o erro foi do caixa, nao meu.", score: 1, feedback: "Transferir a responsabilidade nao muda o fato: o dinheiro nao e seu." },
+        ],
+      },
+      {
+        id: 2, scenario: "O Curriculo Turbinado", icon: "\u{1F4C4}",
+        situation: "Voce esta concorrendo a vaga dos sonhos. Seu curriculo e bom, mas um colega sugere que voce adicione uma certificacao que nao possui \u2014 ele diz que 'todo mundo faz isso' e que ninguem verifica.",
+        options: [
+          { text: "Recuso e envio meu curriculo real, mesmo arriscando perder a vaga.", score: 10, feedback: "Integridade e manter seus valores mesmo quando o custo e alto. Admiravel." },
+          { text: "Nao coloco a certificacao falsa, mas exagero bastante minhas experiencias reais.", score: 4, feedback: "Exagerar e uma forma mais sutil de desonestidade, mas ainda e desonestidade." },
+          { text: "Coloco a certificacao, planejando obte-la de verdade depois se for contratado.", score: 3, feedback: "Boas intencoes futuras nao justificam uma mentira presente." },
+          { text: "Coloco a certificacao sem pensar duas vezes \u2014 o mercado e competitivo demais.", score: 1, feedback: "Justificar desonestidade pela pressao externa e um caminho perigoso." },
+        ],
+      },
+      {
+        id: 3, scenario: "O Segredo do Amigo", icon: "\u{1F92B}",
+        situation: "Seu melhor amigo te conta em sigilo que esta traindo a esposa. Dias depois, a esposa dele \u2014 que tambem e sua amiga \u2014 te pergunta diretamente se voce sabe de algo estranho no comportamento do marido.",
+        options: [
+          { text: "Digo que nao sei de nada para proteger meu amigo.", score: 3, feedback: "Lealdade e importante, mas mentir ativamente para encobrir algo errado e problematico." },
+          { text: "Sugiro que ela converse diretamente com o marido, sem confirmar nem negar nada.", score: 8, feedback: "Resposta sabia \u2014 voce nao trai a confianca, mas direciona para a verdade." },
+          { text: "Conto tudo \u2014 ela merece saber a verdade e esta me perguntando diretamente.", score: 6, feedback: "A honestidade e valida, mas quebrar a confianca de quem confiou em voce tem peso moral." },
+          { text: "Falo com meu amigo primeiro e dou um prazo para ele contar, senao eu conto.", score: 9, feedback: "Equilibra responsabilidade, lealdade e honestidade de forma madura e corajosa." },
+        ],
+      },
+      {
+        id: 4, scenario: "O Erro no Trabalho", icon: "\u{1F4BC}",
+        situation: "Voce comete um erro grave num relatorio que ja foi enviado ao cliente. Seu chefe ainda nao percebeu, e se voce ficar quieto, e possivel que ninguem nunca descubra. Mas se descobrirem, o impacto pode ser grande.",
+        options: [
+          { text: "Assumo o erro imediatamente e proponho uma solucao ao meu chefe.", score: 10, feedback: "Coragem e responsabilidade \u2014 as marcas de um profissional integro e confiavel." },
+          { text: "Tento corrigir sozinho em silencio, sem contar a ninguem.", score: 5, feedback: "A iniciativa e boa, mas esconder erros pode criar problemas maiores no futuro." },
+          { text: "Espero para ver se alguem percebe antes de me manifestar.", score: 2, feedback: "Esperar e torcer e jogar com a sorte \u2014 nao e responsabilidade." },
+          { text: "Dou um jeito de fazer parecer que o erro foi de outra pessoa.", score: 0, feedback: "Culpar outros pelo seu erro e uma das formas mais graves de desonestidade profissional." },
+        ],
+      },
+      {
+        id: 5, scenario: "A Carteira Perdida", icon: "\u{1F45B}",
+        situation: "Voce encontra uma carteira no chao do shopping com R$2.000 em dinheiro, cartoes e documentos. O dono e identificavel pelos documentos. Voce esta passando por dificuldades financeiras serias.",
+        options: [
+          { text: "Entrego a carteira completa na administracao do shopping ou diretamente ao dono.", score: 10, feedback: "Integridade real aparece justamente nos momentos de maior tentacao." },
+          { text: "Devolvo os documentos e cartoes, mas fico com o dinheiro \u2014 ninguem vai provar.", score: 2, feedback: "Devolver parcialmente nao compensa a decisao de ficar com o que nao e seu." },
+          { text: "Devolvo tudo, mas confesso que pensei em ficar com o dinheiro por causa da minha situacao.", score: 9, feedback: "Ser honesto inclusive sobre suas tentacoes mostra autoconhecimento admiravel." },
+          { text: "Fico com tudo \u2014 preciso mais do dinheiro do que essa pessoa.", score: 0, feedback: "Necessidade pessoal nao justifica se apropriar do que pertence a outro." },
+        ],
+      },
+      {
+        id: 6, scenario: "A Cola na Prova", icon: "\u{1F4DD}",
+        situation: "Na prova final da faculdade, que vale sua aprovacao, voce percebe que o colega ao lado deixou a folha totalmente visivel. As respostas dele parecem corretas e o fiscal nao esta prestando atencao.",
+        options: [
+          { text: "Faco minha prova com o que sei, mesmo arriscando reprovar.", score: 10, feedback: "O valor do diploma vem do que voce realmente sabe, nao da nota no papel." },
+          { text: "Dou uma olhadinha rapida em uma ou duas questoes que nao sei.", score: 3, feedback: "'So uma olhadinha' e exatamente como a desonestidade sempre comeca \u2014 pequena." },
+          { text: "Nao colo, mas peco para ir ao banheiro e consulto o celular escondido.", score: 1, feedback: "Mudar o metodo nao muda a natureza do ato \u2014 continua sendo fraude academica." },
+          { text: "Aviso discretamente o colega para que ele cubra a prova \u2014 protejo a integridade de ambos.", score: 9, feedback: "Alem de nao colar, voce ainda protegeu o colega. Atitude rara e admiravel." },
+        ],
+      },
+      {
+        id: 7, scenario: "A Promessa Dificil", icon: "\u{1F91D}",
+        situation: "Voce prometeu ajudar um amigo na mudanca no sabado. Mas na sexta a noite, voce recebe um convite para uma festa incrivel que sempre quis ir, no mesmo horario. Seu amigo esta contando com voce e ja recusou ajuda de outros.",
+        options: [
+          { text: "Cumpro minha promessa \u2014 dei minha palavra e meu amigo conta comigo.", score: 10, feedback: "Sua palavra e seu maior patrimonio. Cumprir promessas define carater." },
+          { text: "Invento uma desculpa convincente (doenca, emergencia) e vou a festa.", score: 1, feedback: "Mentir para quebrar uma promessa e desonestidade dupla \u2014 com o outro e consigo mesmo." },
+          { text: "Sou honesto, digo que surgiu algo e peco desculpas, tentando achar alguem para me substituir.", score: 6, feedback: "A honestidade e boa, mas quebrar promessas por conveniencia tem um custo relacional." },
+          { text: "Ajudo na mudanca de manha cedo e vou a festa depois, mesmo que signifique um dia exaustivo.", score: 8, feedback: "Criativo e responsavel \u2014 voce encontrou um jeito de honrar seu compromisso sem abrir mao de tudo." },
+        ],
+      },
+    ];
 
-<!-- NAVBAR -->
-<nav id="navbar">
-  <a href="index.html" class="nav-logo">
-    <span class="flame-icon">🔥</span>
-    Gás<span>Network</span>
-  </a>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#servicos">Serviços</a></li>
-    <li><a href="#sobre">A Empresa</a></li>
-    <li><a href="#blog" onclick="showHome()">Blog</a></li>
-    <li><a href="#contato">Contato</a></li>
-    <li><a href="https://wa.me/5511985424462" class="nav-cta" target="_blank">Solicitar Orçamento</a></li>
-  </ul>
-  <button class="hamburger" onclick="toggleNav()">☰</button>
-</nav>
+    const getVerdict = (score) => {
+      if (score >= 9) return { title: "Integridade Inabalavel", classification: "Alta Integridade", emoji: "\u{1F3C6}", desc: "Voce e um exemplo raro de honestidade e carater. Suas acoes refletem valores solidos mesmo sob pressao intensa. As pessoas ao seu redor podem confiar em voce de olhos fechados.", color: "#10b981", traits: ["Demonstra consistencia absoluta entre discurso e acao", "Apresenta responsabilidade exemplar em decisoes criticas", "Mantem postura etica em todos os cenarios analisados", "Resiste a pressoes externas com firmeza e conviccao"] };
+      if (score >= 7) return { title: "Consciencia Ativa", classification: "Perfil Confiavel", emoji: "\u2728", desc: "Voce tem uma bussola moral forte e geralmente faz a coisa certa. Em alguns momentos a tentacao pode pesar, mas sua consciencia costuma vencer. Continue cultivando essa integridade!", color: "#3b82f6", traits: ["Demonstra consistencia entre discurso e acao na maioria dos cenarios", "Apresenta responsabilidade em decisoes criticas", "Mantem postura etica na maioria dos cenarios analisados", "Pode apresentar pontos de atencao sob pressao externa extrema"] };
+      if (score >= 5) return { title: "Em Construcao", classification: "Nivel Moderado", emoji: "\u{1F528}", desc: "Voce reconhece o que e certo, mas nem sempre age conforme seus valores. A boa noticia: autoconsciencia e o primeiro passo. Reflita sobre o que te impede de agir com mais integridade.", color: "#f59e0b", traits: ["Reconhece padroes eticos mas apresenta inconsistencias na aplicacao", "Demonstra responsabilidade parcial em decisoes criticas", "Apresenta vulnerabilidade a pressoes externas e conveniencia", "Possui potencial de desenvolvimento com reflexao e pratica"] };
+      if (score >= 3) return { title: "Zona de Alerta", classification: "Em Desenvolvimento", emoji: "\u26A0\uFE0F", desc: "Suas respostas indicam que conveniencia e autopreservacao frequentemente vencem seus valores. Isso pode parecer funcional agora, mas mina a confianca dos outros e sua paz interior.", color: "#f97316", traits: ["Apresenta divergencia frequente entre valores declarados e acoes", "Tende a priorizar conveniencia sobre principios eticos", "Demonstra vulnerabilidade significativa a pressoes externas", "Necessita de reflexao profunda sobre alinhamento de valores e comportamento"] };
+      return { title: "Reflexao Urgente", classification: "Perfil Critico", emoji: "\u{1FA9E}", desc: "Este resultado e um chamado para uma reflexao profunda. Integridade se constroi com escolhas diarias. Nunca e tarde para recomecar e alinhar suas acoes com a pessoa que voce quer ser.", color: "#ef4444", traits: ["Apresenta padrao consistente de escolhas baseadas em interesse proprio", "Demonstra dificuldade em manter compromissos eticos sob pressao", "Tende a racionalizar comportamentos desonestos", "Requer atencao imediata ao desenvolvimento de valores e responsabilidade"] };
+    };
 
-<!-- ═══════════════ HOME PAGE ═══════════════ -->
-<div id="homePage">
+    const genCode = () => {
+      const c = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+      let r = "INT-";
+      for (let i = 0; i < 4; i++) r += c[Math.floor(Math.random() * c.length)];
+      r += "-";
+      for (let i = 0; i < 4; i++) r += c[Math.floor(Math.random() * c.length)];
+      return r;
+    };
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-flame-blob"></div>
-  <div class="hero-grid-lines"></div>
-  <div class="hero-content fade-up">
-    <div class="hero-badge">🛡️ Homologada Comgás · Certificada ABRINSTAL · CREA/SP</div>
-    <h1>Engenharia em Gás<em>com Segurança Total</em></h1>
-    <p class="hero-sub">Instalação, manutenção, inspeção e regularização de redes de gás em São Paulo e Grande SP. Responsável técnico, ART e laudo em cada projeto.</p>
-    <div class="hero-actions">
-      <a href="https://wa.me/5511985424462?text=Olá! Preciso de um orçamento para serviço de gás." target="_blank" class="btn-primary">
-        💬 Solicitar Orçamento Grátis
-      </a>
-      <a href="#servicos" class="btn-outline">Ver Serviços ↓</a>
-    </div>
-    <div class="hero-stats">
-      <div class="stat-item">
-        <span class="stat-num">50+</span>
-        <span class="stat-label">Serviços Executados</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-num">24h</span>
-        <span class="stat-label">Atendimento</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-num">SP</span>
-        <span class="stat-label">+ Grande SP</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-num">ART</span>
-        <span class="stat-label">Em Todo Projeto</span>
-      </div>
-    </div>
-  </div>
-</section>
+    const fmtDate = () => {
+      const d = new Date();
+      const m = ["janeiro","fevereiro","marco","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
+      return d.getDate() + " de " + m[d.getMonth()] + " de " + d.getFullYear();
+    };
 
-<!-- TRUST BAR -->
-<div class="trust-bar">
-  <div class="trust-item"><span class="trust-icon">✅</span> Homologada COMGÁS</div>
-  <div class="trust-item"><span class="trust-icon">🏅</span> Certificada ABRINSTAL BIP</div>
-  <div class="trust-item"><span class="trust-icon">👷</span> Eng. CREA/SP 5071237552</div>
-  <div class="trust-item"><span class="trust-icon">📋</span> ART em todo serviço</div>
-  <div class="trust-item"><span class="trust-icon">🚨</span> Atendimento 24 horas</div>
-  <div class="trust-item"><span class="trust-icon">📐</span> Conforme ABNT e Bombeiros</div>
-</div>
+    function IntegrityTest() {
+      const [phase, setPhase] = useState("intro");
+      const [currentQ, setCurrentQ] = useState(0);
+      const [answers, setAnswers] = useState([]);
+      const [selectedOption, setSelectedOption] = useState(null);
+      const [showFeedback, setShowFeedback] = useState(false);
+      const [animating, setAnimating] = useState(false);
+      const [fadeIn, setFadeIn] = useState(true);
+      const [introStep, setIntroStep] = useState(0);
+      const [userName, setUserName] = useState("");
+      const [nameError, setNameError] = useState(false);
+      const [generatingPdf, setGeneratingPdf] = useState(false);
+      const [validationCode] = useState(genCode());
 
-<!-- SERVIÇOS -->
-<section id="servicos">
-  <span class="section-label">Portfólio Completo</span>
-  <h2 class="section-title">50 Serviços de Gás</h2>
-  <p class="section-sub">Do projeto à regularização. Residencial, comercial e industrial leve — tudo com engenheiro responsável.</p>
-  <div class="services-grid" id="servicesGrid"></div>
-</section>
+      const totalScore = answers.length > 0 ? answers.reduce(function(s, a) { return s + a.score; }, 0) / answers.length : 0;
 
-<!-- SOBRE -->
-<section id="sobre" style="padding:80px 5%;">
-  <div>
-    <span class="section-label">Quem Somos</span>
-    <h2 class="section-title">Engenharia aplicada em sistemas de gás</h2>
-    <p style="color:var(--warm-gray);line-height:1.8;margin-bottom:24px;">A <strong style="color:var(--off-white);">Gás Network Engenharia</strong> é especializada em instalação, manutenção e regularização de redes de gás natural (GN) e GLP. Atendemos residências, condomínios, comércios e indústrias leves em São Paulo e Grande SP.</p>
-    <p style="color:var(--text-muted);line-height:1.8;margin-bottom:32px;">Nosso diferencial é a <strong style="color:var(--flame-light);">responsabilidade técnica com ART</strong>, conformidade total com ABNT, Comgás e Corpo de Bombeiros, e atendimento 24 horas para emergências.</p>
-    <div class="norms-list">
-      <span class="norm-tag">ABNT NBR 15526</span>
-      <span class="norm-tag">ABNT NBR 15358</span>
-      <span class="norm-tag">ABNT NBR 13523</span>
-      <span class="norm-tag">ABNT NBR 13103</span>
-      <span class="norm-tag">SIGA COMGÁS</span>
-      <span class="norm-tag">NT 28 Bombeiros</span>
-    </div>
-    <div style="margin-top:32px;display:flex;gap:14px;flex-wrap:wrap;">
-      <a href="https://wa.me/5511985424462" target="_blank" class="btn-primary">Falar com Engenheiro</a>
-      <a href="#contato" class="btn-outline">Solicitar Laudo</a>
-    </div>
-  </div>
-  <div class="about-visual">
-    <div class="about-card-accent"></div>
-    <h3 style="font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--off-white);margin-bottom:20px;">Certificações e Habilitações</h3>
-    <div class="cert-item">
-      <div class="cert-dot"></div>
-      <div class="cert-text">Empresa homologada <strong>COMGÁS</strong> — apta a executar ligações e obras na rede</div>
-    </div>
-    <div class="cert-item">
-      <div class="cert-dot"></div>
-      <div class="cert-text">Qualificada / certificada <strong>ABRINSTAL (BIP)</strong></div>
-    </div>
-    <div class="cert-item">
-      <div class="cert-dot"></div>
-      <div class="cert-text">Responsável técnico: <strong>Eng. Matheus Henrique dos Santos</strong><br/>CREA/SP 5071237552</div>
-    </div>
-    <div class="cert-item">
-      <div class="cert-dot"></div>
-      <div class="cert-text">Emissão de <strong>ART (Anotação de Responsabilidade Técnica)</strong> em todos os serviços</div>
-    </div>
-    <div class="cert-item">
-      <div class="cert-dot"></div>
-      <div class="cert-text">Conformidade com normas <strong>ABNT e Corpo de Bombeiros (AVCB)</strong></div>
-    </div>
-    <div class="cert-item">
-      <div class="cert-dot"></div>
-      <div class="cert-text">CNPJ: <strong>46.701.957/0001-66</strong> — Gás Network Serviços e Instalações Ltda</div>
-    </div>
-  </div>
-</section>
+      useEffect(function() {
+        if (phase === "intro") {
+          const t = [
+            setTimeout(function() { setIntroStep(1); }, 400),
+            setTimeout(function() { setIntroStep(2); }, 900),
+            setTimeout(function() { setIntroStep(3); }, 1400),
+            setTimeout(function() { setIntroStep(4); }, 1900)
+          ];
+          return function() { t.forEach(clearTimeout); };
+        }
+      }, [phase]);
 
-<!-- BLOG -->
-<section id="blog">
-  <span class="section-label">Blog Técnico</span>
-  <h2 class="section-title">Artigos sobre Gás e Segurança</h2>
-  <p class="section-sub" style="margin-bottom:32px;">Conteúdo técnico produzido pelo nosso engenheiro. Tudo sobre instalação, normas, segurança e manutenção de sistemas de gás.</p>
-  <div class="blog-cats" id="blogCats"></div>
-  <div class="blog-grid" id="blogGrid"></div>
-  <div style="text-align:center;margin-top:40px;">
-    <button class="btn-outline" onclick="loadMorePosts()" id="loadMoreBtn" style="border:1.5px solid rgba(232,93,4,.4);color:var(--flame-light);padding:12px 32px;background:none;cursor:pointer;border-radius:5px;font-weight:600;font-size:.9rem;">
-      Ver Mais Artigos ↓
-    </button>
-  </div>
-</section>
+      const handleSelect = function(opt, idx) {
+        if (showFeedback || animating) return;
+        setSelectedOption(idx);
+        setShowFeedback(true);
+        setAnswers(function(p) { return [...p, { questionId: currentQ, score: opt.score, feedback: opt.feedback }]; });
+      };
 
-<!-- CONTATO -->
-<section id="contato">
-  <div class="contact-grid">
-    <div style="position:relative;z-index:2;">
-      <span class="section-label">Fale Conosco</span>
-      <h2 class="section-title">Solicite seu Orçamento</h2>
-      <p class="section-sub" style="margin-bottom:36px;">Atendemos São Paulo Capital, Grande SP e interior. Resposta rápida via WhatsApp.</p>
-      <div class="contact-info-item">
-        <div class="contact-icon">📍</div>
-        <div>
-          <div class="contact-label">Endereço</div>
-          <div class="contact-value">R. Ascânio, 263 – Chácara Mafalda<br/>São Paulo – SP, CEP 03373-080</div>
+      const handleNext = function() {
+        if (animating) return;
+        setAnimating(true); setFadeIn(false);
+        setTimeout(function() {
+          if (currentQ < questions.length - 1) { setCurrentQ(function(p) { return p + 1; }); setSelectedOption(null); setShowFeedback(false); }
+          else { setPhase("result"); }
+          setFadeIn(true); setAnimating(false);
+        }, 400);
+      };
+
+      const restart = function() {
+        setAnimating(true); setFadeIn(false);
+        setTimeout(function() {
+          setPhase("intro"); setCurrentQ(0); setAnswers([]); setSelectedOption(null); setShowFeedback(false);
+          setIntroStep(0); setUserName(""); setNameError(false); setFadeIn(true); setAnimating(false);
+          setTimeout(function() { setIntroStep(1); }, 400);
+          setTimeout(function() { setIntroStep(2); }, 900);
+          setTimeout(function() { setIntroStep(3); }, 1400);
+          setTimeout(function() { setIntroStep(4); }, 1900);
+        }, 400);
+      };
+
+      const startQuiz = function() {
+        if (!userName.trim() || userName.trim().length < 3) { setNameError(true); return; }
+        setNameError(false); setPhase("quiz"); setFadeIn(true);
+      };
+
+      const generateCertificate = function() {
+        setGeneratingPdf(true);
+        const v = getVerdict(totalScore);
+        const dateStr = fmtDate();
+
+        setTimeout(function() {
+          try {
+            const canvas = document.createElement("canvas");
+            const scale = 3;
+            const W = 794 * scale;
+            const H = 1123 * scale;
+            canvas.width = W;
+            canvas.height = H;
+            const ctx = canvas.getContext("2d");
+            ctx.scale(scale, scale);
+            const w = 794, h = 1123;
+
+            ctx.fillStyle = "#0a0a12";
+            ctx.fillRect(0, 0, w, h);
+
+            const grd = ctx.createRadialGradient(w/2, h*0.35, 50, w/2, h*0.35, 500);
+            grd.addColorStop(0, "rgba(200,170,120,0.04)");
+            grd.addColorStop(1, "transparent");
+            ctx.fillStyle = grd;
+            ctx.fillRect(0, 0, w, h);
+
+            ctx.strokeStyle = "#b49b6e";
+            ctx.lineWidth = 3;
+            ctx.strokeRect(36, 36, w - 72, h - 72);
+
+            ctx.strokeStyle = "rgba(200,170,120,0.4)";
+            ctx.lineWidth = 1;
+            ctx.strokeRect(44, 44, w - 88, h - 88);
+
+            var cs = 24;
+            [[44,44,1,1],[w-44,44,-1,1],[44,h-44,1,-1],[w-44,h-44,-1,-1]].forEach(function(c2) {
+              ctx.strokeStyle = "#c8aa78"; ctx.lineWidth = 2;
+              ctx.beginPath(); ctx.moveTo(c2[0], c2[1]); ctx.lineTo(c2[0] + cs * c2[2], c2[1]); ctx.stroke();
+              ctx.beginPath(); ctx.moveTo(c2[0], c2[1]); ctx.lineTo(c2[0], c2[1] + cs * c2[3]); ctx.stroke();
+            });
+
+            var yy = 96;
+            ctx.strokeStyle = "#c8aa78"; ctx.lineWidth = 1.5;
+            ctx.beginPath(); ctx.moveTo(80, yy); ctx.lineTo(w/2 - 40, yy); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(w/2 + 40, yy); ctx.lineTo(w - 80, yy); ctx.stroke();
+            ctx.fillStyle = "#c8aa78";
+            ctx.beginPath();
+            ctx.moveTo(w/2, yy - 8); ctx.lineTo(w/2 + 8, yy); ctx.lineTo(w/2, yy + 8); ctx.lineTo(w/2 - 8, yy); ctx.closePath();
+            ctx.fill();
+
+            yy = 138;
+            ctx.fillStyle = "#c8aa78";
+            ctx.font = "600 28px 'Segoe UI', 'DM Sans', sans-serif";
+            ctx.textAlign = "center";
+            ctx.fillText("CERTIFICADO DE AVALIACAO DE", w/2, yy);
+
+            yy += 42;
+            ctx.fillStyle = "#e2d4b0";
+            ctx.font = "700 42px 'Segoe UI', 'DM Sans', sans-serif";
+            ctx.fillText("INTEGRIDADE COMPORTAMENTAL", w/2, yy);
+
+            yy += 28;
+            ctx.strokeStyle = "rgba(200,170,120,0.5)"; ctx.lineWidth = 1;
+            ctx.beginPath(); ctx.moveTo(200, yy); ctx.lineTo(w - 200, yy); ctx.stroke();
+
+            yy += 36;
+            ctx.fillStyle = "#a8a298";
+            ctx.font = "400 24px 'Segoe UI', 'DM Sans', sans-serif";
+            ctx.fillText("Certificamos que:", w/2, yy);
+
+            yy += 48;
+            ctx.fillStyle = "#e8d8b8";
+            ctx.font = "700 44px 'Segoe UI', 'DM Sans', sans-serif";
+            var nameText = userName.toUpperCase();
+            ctx.fillText(nameText, w/2, yy);
+            var nw = ctx.measureText(nameText).width;
+            ctx.strokeStyle = "#c8aa78"; ctx.lineWidth = 1;
+            ctx.beginPath(); ctx.moveTo(w/2 - nw/2 - 16, yy + 10); ctx.lineTo(w/2 + nw/2 + 16, yy + 10); ctx.stroke();
+
+            yy += 46;
+            ctx.fillStyle = "#9a958c";
+            ctx.font = "400 20px 'Segoe UI', 'DM Sans', sans-serif";
+            var bodyLines = [
+              "concluiu o processo de avaliacao comportamental por meio da plataforma",
+              "IntegriTest, baseado em criterios estruturados de analise de integridade,",
+              "coerencia e tomada de decisao em cenarios simulados.",
+              "",
+              "Apos responder ao questionario e passar pelo sistema de analise,",
+              "o participante obteve o seguinte resultado:"
+            ];
+            bodyLines.forEach(function(line) { ctx.fillText(line, w/2, yy); yy += 26; });
+
+            yy += 14;
+            var boxX = 110, boxW = w - 220, boxH = 110;
+            ctx.fillStyle = "#12121c"; ctx.strokeStyle = "#c8aa78"; ctx.lineWidth = 2;
+            var roundRect = function(x, y, w2, h2, r) {
+              ctx.beginPath();
+              ctx.moveTo(x + r, y); ctx.lineTo(x + w2 - r, y); ctx.quadraticCurveTo(x + w2, y, x + w2, y + r);
+              ctx.lineTo(x + w2, y + h2 - r); ctx.quadraticCurveTo(x + w2, y + h2, x + w2 - r, y + h2);
+              ctx.lineTo(x + r, y + h2); ctx.quadraticCurveTo(x, y + h2, x, y + h2 - r);
+              ctx.lineTo(x, y + r); ctx.quadraticCurveTo(x, y, x + r, y); ctx.closePath();
+            };
+            roundRect(boxX, yy, boxW, boxH, 10);
+            ctx.fill(); ctx.stroke();
+
+            var leftCenter = boxX + boxW * 0.28;
+            ctx.fillStyle = "#c8aa78";
+            ctx.font = "600 18px 'Segoe UI', 'DM Sans', sans-serif";
+            ctx.fillText("Pontuacao Final", leftCenter, yy + 30);
+            ctx.fillStyle = v.color;
+            ctx.font = "700 64px 'Segoe UI', 'DM Sans', sans-serif";
+            ctx.fillText(totalScore.toFixed(1), leftCenter - 12, yy + 82);
+            ctx.fillStyle = "#7a756c";
+            ctx.font = "400 22px 'Segoe UI', 'DM Sans', sans-serif";
+            ctx.fillText("/ 10", leftCenter + 42, yy + 80);
+
+            ctx.strokeStyle = "rgba(200,170,120,0.25)"; ctx.lineWidth = 1;
+            ctx.beginPath(); ctx.moveTo(boxX + boxW * 0.5, yy + 16); ctx.lineTo(boxX + boxW * 0.5, yy + boxH - 16); ctx.stroke();
+
+            var rightCenter = boxX + boxW * 0.75;
+            ctx.fillStyle = "#c8aa78";
+            ctx.font = "600 18px 'Segoe UI', 'DM Sans', sans-serif";
+            ctx.fillText("Classificacao", rightCenter, yy + 30);
+            ctx.fillStyle = "#e0d5c0";
+            ctx.font = "700 30px 'Segoe UI', 'DM Sans', sans-serif";
+            ctx.fillText(v.classification, rightCenter, yy + 72);
+
+            yy += boxH + 36;
+            ctx.fillStyle = "#c8aa78";
+            ctx.font = "700 24px 'Segoe UI', 'DM Sans', sans-serif";
+            ctx.fillText("Resumo do Perfil Comportamental", w/2, yy);
+            yy += 8;
+            ctx.strokeStyle = "rgba(200,170,120,0.5)"; ctx.lineWidth = 0.8;
+            ctx.beginPath(); ctx.moveTo(w/2 - 120, yy); ctx.lineTo(w/2 + 120, yy); ctx.stroke();
+            yy += 24;
+
+            ctx.textAlign = "left";
+            ctx.font = "400 19px 'Segoe UI', 'DM Sans', sans-serif";
+            v.traits.forEach(function(trait) {
+              ctx.fillStyle = "#c8aa78";
+              ctx.beginPath(); ctx.arc(94, yy - 5, 4, 0, Math.PI * 2); ctx.fill();
+              ctx.fillStyle = "#9a958c";
+              ctx.fillText(trait, 110, yy);
+              yy += 30;
+            });
+
+            yy += 16;
+            ctx.textAlign = "center";
+            ctx.fillStyle = "#c8aa78";
+            ctx.font = "700 22px 'Segoe UI', 'DM Sans', sans-serif";
+            ctx.fillText("Desempenho por Cenario", w/2, yy);
+            yy += 22;
+
+            ctx.textAlign = "left";
+            answers.forEach(function(a, i) {
+              var q2 = questions[i];
+              ctx.fillStyle = "#858078";
+              ctx.font = "400 18px 'Segoe UI', 'DM Sans', sans-serif";
+              ctx.fillText(q2.scenario, 80, yy);
+
+              var barX2 = w - 220, barW2 = 120;
+              ctx.fillStyle = "#1c1c26";
+              roundRect(barX2, yy - 11, barW2, 14, 4); ctx.fill();
+
+              var fillW2 = (a.score / 10) * barW2;
+              ctx.fillStyle = a.score >= 8 ? "#10b981" : a.score >= 5 ? "#f59e0b" : "#ef4444";
+              if (fillW2 > 0) { roundRect(barX2, yy - 11, fillW2, 14, 4); ctx.fill(); }
+
+              ctx.fillStyle = "#c0bab0";
+              ctx.font = "700 18px 'Segoe UI', 'DM Sans', sans-serif";
+              ctx.textAlign = "right";
+              ctx.fillText("" + a.score, w - 72, yy);
+              ctx.textAlign = "left";
+              yy += 26;
+            });
+
+            yy += 14;
+            ctx.strokeStyle = "rgba(200,170,120,0.2)"; ctx.lineWidth = 0.5;
+            ctx.beginPath(); ctx.moveTo(80, yy); ctx.lineTo(w - 80, yy); ctx.stroke();
+            yy += 22;
+            ctx.textAlign = "center";
+            ctx.fillStyle = "#6a655c";
+            ctx.font = "italic 15px 'Segoe UI', 'DM Sans', sans-serif";
+            ctx.fillText("Este certificado representa uma analise baseada em padroes comportamentais e nao deve", w/2, yy);
+            ctx.fillText("ser considerado como julgamento absoluto de carater, mas sim como um indicador", w/2, yy + 20);
+            ctx.fillText("tecnico de tendencias de comportamento.", w/2, yy + 40);
+
+            yy = h - 100;
+            ctx.strokeStyle = "rgba(200,170,120,0.4)"; ctx.lineWidth = 1;
+            ctx.beginPath(); ctx.moveTo(80, yy); ctx.lineTo(w - 80, yy); ctx.stroke();
+            yy += 24;
+            ctx.textAlign = "left";
+            ctx.fillStyle = "#8a857c";
+            ctx.font = "400 17px 'Segoe UI', 'DM Sans', sans-serif";
+            ctx.fillText("Data de emissao: " + dateStr, 80, yy);
+            ctx.textAlign = "right";
+            ctx.fillText("Codigo de validacao: " + validationCode, w - 80, yy);
+            yy += 32;
+            ctx.textAlign = "center";
+            ctx.fillStyle = "#c8aa78";
+            ctx.font = "700 26px 'Segoe UI', 'DM Sans', sans-serif";
+            ctx.fillText("IntegriTest", w/2, yy);
+            yy += 22;
+            ctx.fillStyle = "#706b62";
+            ctx.font = "400 16px 'Segoe UI', 'DM Sans', sans-serif";
+            ctx.fillText("Sistema de Avaliacao Comportamental e Integridade", w/2, yy);
+
+            var link = document.createElement("a");
+            link.download = "Certificado_IntegriTest_" + userName.replace(/\s+/g, "_") + ".png";
+            link.href = canvas.toDataURL("image/png", 1.0);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+          } catch (e) {
+            console.error("Erro:", e);
+            alert("Erro ao gerar o certificado. Tente novamente.");
+          }
+          setGeneratingPdf(false);
+        }, 200);
+      };
+
+      var q = questions[currentQ];
+      var verdict = getVerdict(totalScore);
+
+      return (
+        <div style={{ minHeight: "100vh", background: "#08080f", fontFamily: "'Segoe UI', sans-serif", color: "#e8e6e1" }}>
+          <div style={{ position: "fixed", inset: 0, zIndex: 0, background: "radial-gradient(ellipse at 15% 15%,rgba(200,170,120,.05) 0%,transparent 55%),radial-gradient(ellipse at 85% 85%,rgba(120,100,70,.03) 0%,transparent 55%)" }} />
+          <div style={{ position: "fixed", inset: 0, zIndex: 0, backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0v60M0 30h60' stroke='%23c8aa78' stroke-opacity='0.025' stroke-width='0.5'/%3E%3C/svg%3E\")" }} />
+
+          <div style={{ position: "relative", zIndex: 1, maxWidth: 640, margin: "0 auto", padding: "28px 18px", minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+
+            {phase === "intro" && (
+              <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: 22 }}>
+                <div style={{ opacity: introStep >= 1 ? 1 : 0, transform: introStep >= 1 ? "translateY(0)" : "translateY(20px)", transition: "all .7s", fontSize: 52 }} className="ef">{"\u2696\uFE0F"}</div>
+                <div style={{ opacity: introStep >= 1 ? 1 : 0, transform: introStep >= 1 ? "translateY(0)" : "translateY(20px)", transition: "all .7s", textAlign: "center" }}>
+                  <h1 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "clamp(30px,7vw,46px)", fontWeight: 700, lineHeight: 1.1, letterSpacing: "-.02em", marginBottom: 6 }}>
+                    <span className="gt">IntegriTest</span>
+                  </h1>
+                  <p style={{ fontFamily: "'DM Sans'", fontSize: 12, color: "rgba(200,170,120,.5)", letterSpacing: ".2em", textTransform: "uppercase" }}>Avaliacao Comportamental &middot; 7 Cenarios &middot; Nota 0 a 10</p>
+                </div>
+                <p style={{ opacity: introStep >= 2 ? 1 : 0, transform: introStep >= 2 ? "translateY(0)" : "translateY(20px)", transition: "all .7s", textAlign: "center", maxWidth: 400, fontFamily: "'DM Sans'", fontSize: 14.5, lineHeight: 1.7, color: "rgba(228,222,212,.55)" }}>
+                  Enfrente <strong style={{ color: "#c8aa78" }}>7 dilemas reais</strong> que testam honestidade, lealdade e carater. Ao final, receba seu <strong style={{ color: "#c8aa78" }}>certificado oficial</strong> com analise completa do seu perfil.
+                </p>
+                <div style={{ opacity: introStep >= 3 ? 1 : 0, transform: introStep >= 3 ? "translateY(0)" : "translateY(20px)", transition: "all .7s", width: "100%", maxWidth: 380, display: "flex", flexDirection: "column", gap: 8, alignItems: "center" }}>
+                  <label style={{ fontFamily: "'DM Sans'", fontSize: 11, color: "rgba(200,170,120,.45)", letterSpacing: ".15em", textTransform: "uppercase", alignSelf: "flex-start", marginLeft: 4 }}>Seu nome completo</label>
+                  <input className={"ni " + (nameError ? "er" : "")} type="text" placeholder="Digite seu nome aqui..." value={userName} onChange={function(e) { setUserName(e.target.value); setNameError(false); }} onKeyDown={function(e) { if (e.key === "Enter") startQuiz(); }} maxLength={60} />
+                  {nameError && <span style={{ fontFamily: "'DM Sans'", fontSize: 12, color: "#ef4444" }}>Por favor, informe seu nome completo (minimo 3 caracteres)</span>}
+                </div>
+                <button className="pb" onClick={startQuiz} style={{ opacity: introStep >= 4 ? 1 : 0, transform: introStep >= 4 ? "scale(1)" : "scale(.9)", transition: "all .5s", animation: introStep >= 4 ? "pulse 2s infinite" : "none" }}>
+                  INICIAR AVALIACAO
+                </button>
+              </div>
+            )}
+
+            {phase === "quiz" && (
+              <div className={fadeIn ? "fi" : "fo"} style={{ flex: 1, display: "flex", flexDirection: "column" }}>
+                <div style={{ display: "flex", gap: 5, marginBottom: 22 }}>
+                  {questions.map(function(_, i) { return <div key={i} className="ps" style={{ background: i < currentQ ? "rgba(200,170,120,.65)" : i === currentQ ? "linear-gradient(90deg,#c8aa78,#a68b5c)" : "rgba(255,255,255,.07)" }} />; })}
+                </div>
+                <div style={{ marginBottom: 18 }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10 }}>
+                    <span style={{ fontSize: 26 }}>{q.icon}</span>
+                    <div>
+                      <span style={{ fontFamily: "'DM Sans'", fontSize: 10, fontWeight: 600, color: "rgba(200,170,120,.45)", letterSpacing: ".2em", textTransform: "uppercase" }}>Cenario {currentQ + 1} de 7</span>
+                      <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 22, fontWeight: 700, color: "#c8aa78", lineHeight: 1.2 }}>{q.scenario}</h2>
+                    </div>
+                  </div>
+                  <p style={{ fontFamily: "'DM Sans'", fontSize: 14.5, lineHeight: 1.7, color: "rgba(228,222,212,.7)", padding: "14px 18px", background: "rgba(200,170,120,.035)", borderRadius: 12, borderLeft: "3px solid rgba(200,170,120,.25)" }}>{q.situation}</p>
+                </div>
+                <div style={{ display: "flex", flexDirection: "column", gap: 9, marginBottom: 18 }}>
+                  {q.options.map(function(opt, i) {
+                    return (
+                      <button key={i} className={"ob " + (selectedOption === i ? "sl " : "") + (showFeedback && selectedOption !== i ? "ds" : "")} onClick={function() { handleSelect(opt, i); }}>
+                        <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: 24, height: 24, borderRadius: "50%", marginRight: 12, float: "left", marginTop: 1, border: selectedOption === i ? "2px solid #c8aa78" : "1.5px solid rgba(200,170,120,.2)", background: selectedOption === i ? "rgba(200,170,120,.15)" : "transparent", fontSize: 11, fontWeight: 700, color: "#c8aa78", transition: "all .3s", flexShrink: 0 }}>{String.fromCharCode(65 + i)}</span>
+                        {opt.text}
+                      </button>
+                    );
+                  })}
+                </div>
+                {showFeedback && (
+                  <div style={{ animation: "scIn .4s ease-out", padding: "16px 20px", borderRadius: 14, background: "rgba(200,170,120,.06)", border: "1px solid rgba(200,170,120,.18)", marginBottom: 16 }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
+                      <span style={{ fontFamily: "'DM Sans'", fontSize: 12, fontWeight: 700, color: "#c8aa78", letterSpacing: ".08em", textTransform: "uppercase" }}>
+                        {answers[answers.length - 1] && answers[answers.length - 1].score >= 8 ? "\u{1F31F} Excelente" : answers[answers.length - 1] && answers[answers.length - 1].score >= 5 ? "\u{1F4AD} Reflexao" : "\u26A1 Atencao"}
+                      </span>
+                      <span style={{ fontFamily: "'DM Sans'", fontSize: 11, color: "rgba(200,170,120,.45)", marginLeft: "auto" }}>+{answers[answers.length - 1] && answers[answers.length - 1].score} pts</span>
+                    </div>
+                    <p style={{ fontFamily: "'DM Sans'", fontSize: 13.5, lineHeight: 1.6, color: "rgba(228,222,212,.65)" }}>{answers[answers.length - 1] && answers[answers.length - 1].feedback}</p>
+                  </div>
+                )}
+                {showFeedback && (
+                  <div style={{ animation: "scIn .3s ease-out .1s both" }}>
+                    <button className="pb" onClick={handleNext} style={{ width: "100%" }}>
+                      {currentQ < questions.length - 1 ? "PROXIMO CENARIO \u2192" : "VER RESULTADO FINAL \u2192"}
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {phase === "result" && (
+              <div className={fadeIn ? "fi" : "fo"} style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", gap: 20, paddingBottom: 32 }}>
+                <div style={{ textAlign: "center" }}>
+                  <div style={{ fontSize: 52, marginBottom: 6 }} className="ef">{verdict.emoji}</div>
+                  <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "clamp(24px,5vw,34px)", fontWeight: 700, lineHeight: 1.15 }}>
+                    <span className="gt">{verdict.title}</span>
+                  </h2>
+                  <p style={{ fontFamily: "'DM Sans'", fontSize: 13, color: "rgba(200,170,120,.5)", marginTop: 4 }}>{userName}</p>
+                </div>
+
+                <div style={{ textAlign: "center", padding: "22px 18px", borderRadius: 18, background: "rgba(200,170,120,.04)", border: "1px solid rgba(200,170,120,.12)" }}>
+                  <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 54, fontWeight: 700, color: verdict.color, lineHeight: 1 }}>{totalScore.toFixed(1)}</div>
+                  <div style={{ fontFamily: "'DM Sans'", fontSize: 11, color: "rgba(200,170,120,.4)", letterSpacing: ".15em", textTransform: "uppercase", marginTop: 2 }}>de 10 pontos</div>
+                  <div style={{ marginTop: 12, height: 6, borderRadius: 3, background: "rgba(255,255,255,.05)", overflow: "hidden" }}>
+                    <div style={{ height: "100%", width: (totalScore * 10) + "%", borderRadius: 3, background: "linear-gradient(90deg," + verdict.color + "88," + verdict.color + ")", animation: "bG 1s ease-out" }} />
+                  </div>
+                  <div style={{ fontFamily: "'DM Sans'", fontSize: 13, fontWeight: 600, color: verdict.color, marginTop: 10, letterSpacing: ".05em" }}>{verdict.classification}</div>
+                </div>
+
+                <p style={{ fontFamily: "'DM Sans'", fontSize: 14.5, lineHeight: 1.7, color: "rgba(228,222,212,.6)", textAlign: "center", maxWidth: 460, margin: "0 auto" }}>{verdict.desc}</p>
+
+                <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                  <h3 style={{ fontFamily: "'DM Sans'", fontSize: 11, fontWeight: 600, color: "rgba(200,170,120,.45)", letterSpacing: ".15em", textTransform: "uppercase", marginBottom: 2 }}>Desempenho por cenario</h3>
+                  {answers.map(function(a, i) {
+                    return (
+                      <div key={i} style={{ display: "flex", alignItems: "center", gap: 10, padding: "10px 14px", borderRadius: 10, background: "rgba(255,255,255,.015)", border: "1px solid rgba(255,255,255,.04)" }}>
+                        <span style={{ fontSize: 18 }}>{questions[i].icon}</span>
+                        <span style={{ fontFamily: "'DM Sans'", fontSize: 12.5, color: "rgba(228,222,212,.55)", flex: 1 }}>{questions[i].scenario}</span>
+                        <span style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 18, fontWeight: 700, color: a.score >= 8 ? "#10b981" : a.score >= 5 ? "#f59e0b" : "#ef4444" }}>{a.score}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                <div style={{ padding: "16px 18px", borderRadius: 14, background: "rgba(200,170,120,.03)", border: "1px solid rgba(200,170,120,.1)" }}>
+                  <h3 style={{ fontFamily: "'DM Sans'", fontSize: 11, fontWeight: 600, color: "rgba(200,170,120,.5)", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: 10 }}>Perfil Comportamental</h3>
+                  {verdict.traits.map(function(t, i) {
+                    return (
+                      <div key={i} style={{ display: "flex", gap: 10, alignItems: "flex-start", marginBottom: 8 }}>
+                        <span style={{ color: "#c8aa78", fontSize: 8, marginTop: 5 }}>{"\u25C6"}</span>
+                        <span style={{ fontFamily: "'DM Sans'", fontSize: 13, lineHeight: 1.55, color: "rgba(228,222,212,.6)" }}>{t}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                <div style={{ textAlign: "center", padding: "22px 18px", borderRadius: 16, border: "1.5px dashed rgba(200,170,120,.25)", background: "linear-gradient(135deg,rgba(200,170,120,.04),rgba(200,170,120,.01))" }}>
+                  <div style={{ fontSize: 36, marginBottom: 8 }}>{"\u{1F4DC}"}</div>
+                  <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 20, fontWeight: 700, color: "#c8aa78", marginBottom: 6 }}>Certificado Oficial</div>
+                  <p style={{ fontFamily: "'DM Sans'", fontSize: 13, lineHeight: 1.6, color: "rgba(228,222,212,.5)", marginBottom: 16, maxWidth: 380, margin: "0 auto 16px" }}>
+                    Baixe seu certificado profissional de avaliacao comportamental com selo, codigo de validacao e analise completa do perfil.
+                  </p>
+                  <div style={{ display: "flex", gap: 6, justifyContent: "center", flexWrap: "wrap", marginBottom: 16 }}>
+                    <span style={{ fontFamily: "'DM Sans'", fontSize: 10, padding: "5px 12px", borderRadius: 20, background: "rgba(200,170,120,.08)", color: "rgba(200,170,120,.6)", border: "1px solid rgba(200,170,120,.12)" }}>{"\u{1F4C5}"} {fmtDate()}</span>
+                    <span style={{ fontFamily: "'DM Sans'", fontSize: 10, padding: "5px 12px", borderRadius: 20, background: "rgba(200,170,120,.08)", color: "rgba(200,170,120,.6)", border: "1px solid rgba(200,170,120,.12)" }}>{"\u{1F511}"} {validationCode}</span>
+                  </div>
+                  <button className="pb" onClick={generateCertificate} disabled={generatingPdf} style={{ animation: !generatingPdf ? "pulse 2s infinite" : "none", fontSize: 16, padding: "16px 48px" }}>
+                    {generatingPdf ? (
+                      <React.Fragment><span style={{ width: 18, height: 18, border: "2.5px solid rgba(10,10,15,.3)", borderTopColor: "#0a0a0f", borderRadius: "50%", animation: "sp .8s linear infinite", display: "inline-block" }} /> GERANDO...</React.Fragment>
+                    ) : "\u{1F4E5} BAIXAR CERTIFICADO"}
+                  </button>
+                </div>
+
+                <div style={{ textAlign: "center", marginTop: 6 }}>
+                  <button className="gb" onClick={restart}>{"\u{1F504}"} REFAZER TESTE</button>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
-      </div>
-      <div class="contact-info-item">
-        <div class="contact-icon">📞</div>
-        <div>
-          <div class="contact-label">Telefone / WhatsApp</div>
-          <div class="contact-value"><a href="tel:+5511985424462" style="color:var(--off-white);text-decoration:none;">(11) 98542-4462</a></div>
-        </div>
-      </div>
-      <div class="contact-info-item">
-        <div class="contact-icon">📧</div>
-        <div>
-          <div class="contact-label">E-mail</div>
-          <div class="contact-value"><a href="/cdn-cgi/l/email-protection#4625292832273229062127352823323129342d6825292b682434" style="color:var(--off-white);text-decoration:none;"><span class="__cf_email__" data-cfemail="4f2c20213b2e3b200f282e3c212a3b38203d24612c2022612d3d">[email&#160;protected]</span></a></div>
-        </div>
-      </div>
-      <div class="contact-info-item">
-        <div class="contact-icon">🌐</div>
-        <div>
-          <div class="contact-label">Site</div>
-          <div class="contact-value">www.gasnetwork.org</div>
-        </div>
-      </div>
-      <div class="contact-info-item">
-        <div class="contact-icon">🕐</div>
-        <div>
-          <div class="contact-label">Horário de Atendimento</div>
-          <div class="contact-value">24 horas por dia, 7 dias por semana<br/><span style="color:var(--flame-light);font-size:.85rem;">Emergências atendidas imediatamente</span></div>
-        </div>
-      </div>
-    </div>
-    <div class="contact-form" style="position:relative;z-index:2;">
-      <h3 style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--off-white);margin-bottom:22px;">Enviar Mensagem</h3>
-      <div class="form-group">
-        <label>Nome completo</label>
-        <input type="text" placeholder="Seu nome"/>
-      </div>
-      <div class="form-group">
-        <label>WhatsApp / Telefone</label>
-        <input type="tel" placeholder="(11) 9 0000-0000"/>
-      </div>
-      <div class="form-group">
-        <label>Tipo de serviço</label>
-        <select>
-          <option>Selecione o serviço...</option>
-          <option>Instalação de rede de gás</option>
-          <option>Manutenção / reparo</option>
-          <option>Teste de estanqueidade</option>
-          <option>Laudo / vistoria técnica</option>
-          <option>Detecção de vazamento</option>
-          <option>Regularização / AVCB</option>
-          <option>Projeto de gás</option>
-          <option>Outro serviço</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Mensagem</label>
-        <textarea placeholder="Descreva brevemente o que você precisa..."></textarea>
-      </div>
-      <button class="form-submit" onclick="sendWhatsApp()">Enviar pelo WhatsApp →</button>
-      <p style="font-size:.75rem;color:var(--text-muted);margin-top:10px;text-align:center;">Ao clicar, você será redirecionado ao WhatsApp</p>
-    </div>
-  </div>
-</section>
+      );
+    }
 
-</div><!-- end homePage -->
-
-<!-- ═══════════════ ARTICLE PAGE ═══════════════ -->
-<div id="articlePage" class="article-page">
-  <div class="article-hero">
-    <div class="article-breadcrumb">
-      <a href="#" onclick="showHome()">Início</a> ›
-      <a href="#blog" onclick="showHome()">Blog</a> ›
-      <span id="articleCat">Categoria</span>
-    </div>
-    <h1 id="articleTitle">Título do Artigo</h1>
-    <div class="article-meta">
-      <span>📅 <strong id="articleDate"></strong></span>
-      <span>👷 <strong>Eng. Matheus Henrique</strong></span>
-      <span>⏱ Leitura: ~5 min</span>
-    </div>
-  </div>
-  <div class="article-body" id="articleBody"></div>
-</div>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <div class="nav-logo" style="display:inline-flex;margin-bottom:6px;">🔥 Gás<span style="color:var(--flame);">Network</span></div>
-      <p>Engenharia especializada em sistemas de gás. Homologada Comgás, certificada ABRINSTAL. São Paulo e Grande SP.</p>
-      <p style="margin-top:10px;font-size:.78rem;color:var(--text-muted);">CNPJ: 46.701.957/0001-66</p>
-    </div>
-    <div class="footer-col">
-      <h4>Serviços</h4>
-      <ul>
-        <li><a href="#servicos">Instalação de Gás</a></li>
-        <li><a href="#servicos">Manutenção</a></li>
-        <li><a href="#servicos">Inspeção Predial</a></li>
-        <li><a href="#servicos">Laudo Técnico</a></li>
-        <li><a href="#servicos">Projeto de Gás</a></li>
-        <li><a href="#servicos">ART</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Empresa</h4>
-      <ul>
-        <li><a href="#sobre">Sobre nós</a></li>
-        <li><a href="#sobre">Certificações</a></li>
-        <li><a href="#blog">Blog Técnico</a></li>
-        <li><a href="#contato">Contato</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Contato</h4>
-      <ul>
-        <li><a href="tel:+5511985424462">(11) 98542-4462</a></li>
-        <li><a href="/cdn-cgi/l/email-protection#f1929e9f8590859eb19690829f9485869e839adf929e9cdf9383"><span class="__cf_email__" data-cfemail="5734383923362338173036243932232038253c7934383a793525">[email&#160;protected]</span></a></li>
-        <li><a href="#">www.gasnetwork.org</a></li>
-        <li><a href="https://wa.me/5511985424462" target="_blank">WhatsApp</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p>© 2024 Gás Network Serviços e Instalações Ltda · Todos os direitos reservados</p>
-    <p>Desenvolvido com ❤️ para <a href="#">gasnetwork.org</a></p>
-  </div>
-</footer>
-
-<!-- WhatsApp FAB -->
-<a href="https://wa.me/5511985424462?text=Olá! Preciso de um orçamento." target="_blank" class="whatsapp-fab" title="Falar no WhatsApp">💬</a>
-
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// ═══════════ DATA ═══════════
-
-const SERVICES = [
-  {icon:'🔧',name:'Instalação de Rede de Gás GN (Comgás)',desc:'Instalação completa de rede de gás natural com tubulação homologada e ART.'},
-  {icon:'🛢️',name:'Instalação de Rede de Gás GLP',desc:'Projeto e instalação de rede GLP para residências e comércios.'},
-  {icon:'🪛',name:'Instalação de Tubulação em Cobre',desc:'Tubulação em cobre rígido ou flexível, conforme ABNT NBR 15526.'},
-  {icon:'🔩',name:'Instalação de Tubulação PEX 20mm',desc:'Instalação de tubulação PEX 20mm para ramais internos de gás.'},
-  {icon:'🔩',name:'Instalação de Tubulação PEX 32mm',desc:'PEX 32mm para ramais de maior vazão e prumadas verticais.'},
-  {icon:'📍',name:'Adequação de Pontos de Gás',desc:'Adequação de pontos existentes às normas vigentes da ABNT e Comgás.'},
-  {icon:'➕',name:'Criação de Novos Pontos de Consumo',desc:'Abertura de novos pontos para fogão, aquecedor, forno e outros.'},
-  {icon:'🔄',name:'Remanejamento de Pontos de Gás',desc:'Realocação de pontos para reformas e novas plantas.'},
-  {icon:'🔃',name:'Substituição de Tubulação Antiga',desc:'Troca de tubulações obsoletas por materiais modernos e seguros.'},
-  {icon:'🏗️',name:'Instalação de Prumadas de Gás',desc:'Execução de prumadas verticais em condomínios e edifícios.'},
-  {icon:'🔗',name:'Interligação de Rede Interna',desc:'Integração de diferentes ramais em um único sistema de gás.'},
-  {icon:'🌿',name:'Instalação de Ramais de Gás',desc:'Ramal de ligação do ponto de entrega até os pontos de consumo.'},
-  {icon:'🏭',name:'Instalação de Central GLP',desc:'Projeto e instalação de central de GLP com medidas de segurança.'},
-  {icon:'🏠',name:'Montagem de Abrigo para Cilindros',desc:'Construção de abrigo conforme ABNT NBR 13523 e Corpo de Bombeiros.'},
-  {icon:'⚙️',name:'Instalação de Reguladores de Pressão',desc:'Reguladores 1ª e 2ª fase para controle seguro da pressão.'},
-  {icon:'🚪',name:'Instalação de Válvulas de Bloqueio',desc:'Válvulas de corte nos pontos estratégicos da rede.'},
-  {icon:'🛡️',name:'Instalação de Válvulas de Segurança',desc:'Dispositivos de segurança para prevenção de sobrepressão.'},
-  {icon:'📊',name:'Instalação de Medidores de Gás',desc:'Instalação de medidores individuais por unidade consumidora.'},
-  {icon:'🍳',name:'Ligação de Fogão',desc:'Ligação técnica de fogão a gás com teste de estanqueidade.'},
-  {icon:'🥘',name:'Ligação de Cooktop',desc:'Instalação e teste de cooktop embutido a gás.'},
-  {icon:'🫕',name:'Ligação de Forno a Gás',desc:'Ligação de forno a gás com regulagem e teste de funcionamento.'},
-  {icon:'🚿',name:'Ligação de Aquecedor a Gás',desc:'Instalação de aquecedor a gás de passagem ou acumulação.'},
-  {icon:'🔁',name:'Conversão de Fogão GLP para GN',desc:'Conversão completa com troca de injetores e regulagem.'},
-  {icon:'🔁',name:'Conversão de Fogão GN para GLP',desc:'Conversão de equipamentos de gás natural para GLP.'},
-  {icon:'🔁',name:'Conversão de Aquecedores',desc:'Conversão de aquecedores entre GN e GLP conforme necessidade.'},
-  {icon:'🎛️',name:'Regulagem de Equipamentos a Gás',desc:'Calibração e regulagem de pressão em equipamentos.'},
-  {icon:'🔍',name:'Teste de Estanqueidade',desc:'Ensaio de pressão para verificação de vazamentos conforme norma.'},
-  {icon:'📄',name:'Emissão de Laudo Técnico',desc:'Laudo técnico assinado pelo engenheiro responsável com ART.'},
-  {icon:'✅',name:'Vistoria para Liberação Comgás',desc:'Inspeção e adequação para aprovação da concessionária.'},
-  {icon:'🏢',name:'Inspeção Predial de Gás',desc:'Inspeção completa da rede predial com relatório técnico.'},
-  {icon:'🏠',name:'Inspeção em Apartamentos',desc:'Vistoria técnica de gás em unidades residenciais.'},
-  {icon:'🏘️',name:'Inspeção em Condomínios',desc:'Inspeção periódica de toda a rede de gás do condomínio.'},
-  {icon:'👃',name:'Detecção de Vazamento de Gás',desc:'Localização de vazamentos com equipamento específico.'},
-  {icon:'🔧',name:'Reparo de Vazamentos',desc:'Correção imediata de vazamentos com segurança e agilidade.'},
-  {icon:'🛠️',name:'Manutenção em Rede de Gás',desc:'Manutenção geral em redes residenciais e prediais.'},
-  {icon:'📅',name:'Manutenção Preventiva',desc:'Programa de manutenção preventiva com cronograma técnico.'},
-  {icon:'🚨',name:'Manutenção Corretiva',desc:'Atendimento de emergência para correção de falhas.'},
-  {icon:'📐',name:'Adequação conforme Normas ABNT',desc:'Adequação de instalações antigas às normas técnicas vigentes.'},
-  {icon:'✍️',name:'Regularização de Instalações',desc:'Regularização documental e técnica de instalações irregulares.'},
-  {icon:'📋',name:'Elaboração de Projeto de Gás',desc:'Projeto técnico completo com memorial descritivo e plantas.'},
-  {icon:'📝',name:'Emissão de ART',desc:'Anotação de Responsabilidade Técnica para todos os serviços.'},
-  {icon:'💼',name:'Consultoria Técnica em Gás',desc:'Assessoria técnica para empresas, construtoras e condomínios.'},
-  {icon:'🚒',name:'Adequação para AVCB',desc:'Adequação da rede de gás para obtenção do Auto de Vistoria dos Bombeiros.'},
-  {icon:'📦',name:'Adequação de Central GLP conforme Norma',desc:'Adequação de centrais de GLP conforme ABNT NBR 13523.'},
-  {icon:'🪱',name:'Substituição de Mangueiras de Gás',desc:'Troca de mangueiras por modelos aprovados e dentro do prazo.'},
-  {icon:'🔩',name:'Substituição de Conexões',desc:'Reposição de conexões danificadas ou fora das normas.'},
-  {icon:'🧹',name:'Limpeza de Rede de Gás',desc:'Limpeza interna de tubulações para remoção de resíduos.'},
-  {icon:'🧪',name:'Aplicação de Resina em Tubulação de Gás',desc:'Revestimento interno com resina epóxi para vedação de microvazamentos sem obras civis.'},
-];
-
-const BLOG_CATEGORIES = [
-  'Todos','Instalação','Normas ABNT','Segurança','Manutenção','GLP x GN','Condomínios','Projetos','Equipamentos','Vazamentos'
-];
-
-const BLOG_POSTS = [
-  // INSTALAÇÃO
-  {id:1,cat:'Instalação',icon:'🔧',color:'#1a2e42',title:'Como é feita a instalação de rede de gás natural em apartamentos',excerpt:'Entenda o passo a passo técnico desde o projeto até a ligação com a Comgás.',date:'15/01/2025'},
-  {id:2,cat:'Instalação',icon:'🔩',color:'#1a1a2e',title:'Tubulação de cobre ou PEX: qual escolher para gás?',excerpt:'Comparativo técnico entre cobre rígido e PEX, com vantagens e aplicações de cada material.',date:'18/01/2025'},
-  {id:3,cat:'Instalação',icon:'🏗️',color:'#0d1b2a',title:'Prumadas de gás em edifícios: normas e execução',excerpt:'Como funciona a prumada vertical de gás em condomínios, requisitos de segurança e conformidade.',date:'22/01/2025'},
-  {id:4,cat:'Instalação',icon:'🛢️',color:'#1a2e42',title:'Instalação de central de GLP: tudo o que você precisa saber',excerpt:'Projeto, normas, distâncias mínimas, abrigo e responsabilidade técnica para centrais de GLP.',date:'25/01/2025'},
-  {id:5,cat:'Instalação',icon:'📍',color:'#1a1a2e',title:'Como criar novos pontos de gás na reforma',excerpt:'Planejamento técnico para criação de pontos de gás em reformas residenciais e comerciais.',date:'29/01/2025'},
-  // NORMAS ABNT
-  {id:6,cat:'Normas ABNT',icon:'📐',color:'#0d2010',title:'ABNT NBR 15526: guia completo sobre redes de gás prediais',excerpt:'Tudo sobre a principal norma de instalações de gás GN e GLP em edificações.',date:'02/02/2025'},
-  {id:7,cat:'Normas ABNT',icon:'📋',color:'#1a2e42',title:'O que é ART e por que você precisa em toda instalação de gás',excerpt:'Entenda a Anotação de Responsabilidade Técnica, obrigações legais e como se proteger.',date:'06/02/2025'},
-  {id:8,cat:'Normas ABNT',icon:'📝',color:'#0d1b2a',title:'ABNT NBR 13523: norma para central de GLP',excerpt:'Requisitos técnicos da NBR 13523 para centrais de GLP residenciais e comerciais.',date:'10/02/2025'},
-  {id:9,cat:'Normas ABNT',icon:'🏛️',color:'#1a2010',title:'NT 28 Corpo de Bombeiros: exigências para sistemas de gás',excerpt:'Entenda a Nota Técnica 28 do CBPMESP e o que ela exige em instalações de gás.',date:'14/02/2025'},
-  {id:10,cat:'Normas ABNT',icon:'📊',color:'#1a2e42',title:'SIGA Comgás: sistema de homologação de instaladores',excerpt:'Como funciona o SIGA e por que sua empresa de gás precisa ser homologada.',date:'18/02/2025'},
-  // SEGURANÇA
-  {id:11,cat:'Segurança',icon:'🛡️',color:'#2e1a1a',title:'10 dicas de segurança no uso do gás em casa',excerpt:'Orientações essenciais para uso seguro do gás GN e GLP em residências.',date:'22/02/2025'},
-  {id:12,cat:'Segurança',icon:'🚨',color:'#0d1b2a',title:'O que fazer em caso de vazamento de gás',excerpt:'Procedimento correto e seguro para situações de emergência com vazamento.',date:'26/02/2025'},
-  {id:13,cat:'Segurança',icon:'🔥',color:'#2e1a0a',title:'Como detectar vazamento de gás: métodos técnicos',excerpt:'Técnicas profissionais e caseiras para identificar vazamentos de gás.',date:'02/03/2025'},
-  {id:14,cat:'Segurança',icon:'⚗️',color:'#0d2010',title:'Gás natural x GLP: qual é mais seguro?',excerpt:'Análise técnica das propriedades de segurança do gás natural e do GLP.',date:'06/03/2025'},
-  {id:15,cat:'Segurança',icon:'🚒',color:'#2e1a1a',title:'AVCB para condomínio: papel do sistema de gás',excerpt:'Como a instalação de gás impacta a obtenção e renovação do AVCB.',date:'10/03/2025'},
-  // MANUTENÇÃO
-  {id:16,cat:'Manutenção',icon:'🛠️',color:'#1a1a2e',title:'Manutenção preventiva de gás: quando e por que fazer',excerpt:'Periodicidade recomendada e benefícios da manutenção preventiva em redes de gás.',date:'14/03/2025'},
-  {id:17,cat:'Manutenção',icon:'🔄',color:'#0d1b2a',title:'Vida útil de mangueiras e conexões de gás',excerpt:'Quando trocar mangueiras, válvulas e conexões da sua instalação de gás.',date:'18/03/2025'},
-  {id:18,cat:'Manutenção',icon:'🧪',color:'#1a2010',title:'Aplicação de resina em tubulação de gás: o que é?',excerpt:'Tecnologia de revestimento interno com resina epóxi para vedação sem obras.',date:'22/03/2025'},
-  {id:19,cat:'Manutenção',icon:'🔍',color:'#2e1a0a',title:'Teste de estanqueidade: como é feito e para que serve',excerpt:'Procedimento técnico completo do ensaio de estanqueidade em instalações de gás.',date:'26/03/2025'},
-  {id:20,cat:'Manutenção',icon:'📅',color:'#1a2e42',title:'Contrato de manutenção de gás para condomínio',excerpt:'Vantagens, escopo e o que deve constar em um contrato de manutenção de gás predial.',date:'30/03/2025'},
-  // GLP x GN
-  {id:21,cat:'GLP x GN',icon:'🔁',color:'#1a1a0d',title:'Conversão de fogão GLP para GN: passo a passo',excerpt:'Como é feita a conversão técnica de fogões e cooktops ao migrar para gás natural.',date:'03/04/2025'},
-  {id:22,cat:'GLP x GN',icon:'💰',color:'#0d1b2a',title:'GN vs GLP: qual é mais barato em SP?',excerpt:'Comparativo de custos reais entre gás natural Comgás e botijão de GLP.',date:'07/04/2025'},
-  {id:23,cat:'GLP x GN',icon:'🌿',color:'#0d2010',title:'Gás natural é mais sustentável que GLP?',excerpt:'Análise ambiental completa comparando emissões e impacto do GN e GLP.',date:'11/04/2025'},
-  {id:24,cat:'GLP x GN',icon:'📦',color:'#2e1a0a',title:'Migração para gás natural: como funciona o processo',excerpt:'Todo o processo de migração da sua residência do GLP para a rede de gás natural.',date:'15/04/2025'},
-  {id:25,cat:'GLP x GN',icon:'⚡',color:'#1a2e42',title:'Qual equipamento rende mais: GN ou GLP?',excerpt:'Comparativo técnico de eficiência entre equipamentos alimentados por GN e GLP.',date:'19/04/2025'},
-  // CONDOMÍNIOS
-  {id:26,cat:'Condomínios',icon:'🏢',color:'#0d1b2a',title:'Vistoria de gás em condomínio: quem é responsável?',excerpt:'Responsabilidades do síndico e da administradora na inspeção de gás predial.',date:'23/04/2025'},
-  {id:27,cat:'Condomínios',icon:'📊',color:'#1a2e42',title:'Medição individual de gás em condomínio: como implementar',excerpt:'Instalação de medidores individuais e os benefícios para condôminos e gestão.',date:'27/04/2025'},
-  {id:28,cat:'Condomínios',icon:'🔔',color:'#2e1a1a',title:'Laudo técnico de gás predial: quando é obrigatório',excerpt:'Normas, periodicidade e o que deve constar no laudo técnico de gás predial.',date:'01/05/2025'},
-  {id:29,cat:'Condomínios',icon:'🏗️',color:'#0d2010',title:'Reforma da rede de gás em edifício: como planejar',excerpt:'Gestão completa de reforma de rede de gás predial sem interrupção para os moradores.',date:'05/05/2025'},
-  {id:30,cat:'Condomínios',icon:'📋',color:'#1a1a2e',title:'AVCB e gás: documentação necessária para renovação',excerpt:'Documentos e adequações de gás exigidos para renovar o Auto de Vistoria dos Bombeiros.',date:'09/05/2025'},
-  // PROJETOS
-  {id:31,cat:'Projetos',icon:'📐',color:'#1a2010',title:'Como elaborar um projeto de gás residencial',excerpt:'Etapas de um projeto técnico de gás: memorial, plantas, dimensionamento e ART.',date:'13/05/2025'},
-  {id:32,cat:'Projetos',icon:'🏭',color:'#0d1b2a',title:'Projeto de gás para indústria leve: particularidades',excerpt:'Requisitos adicionais e normas específicas para projetos de gás industrial.',date:'17/05/2025'},
-  {id:33,cat:'Projetos',icon:'🏪',color:'#2e1a0a',title:'Projeto de gás para restaurante e lanchonete',excerpt:'Dimensionamento correto de rede de gás para cozinhas comerciais e industriais.',date:'21/05/2025'},
-  {id:34,cat:'Projetos',icon:'🧮',color:'#1a2e42',title:'Dimensionamento de rede de gás: como calcular',excerpt:'Metodologia técnica para calcular diâmetros, pressões e vazões em redes de gás.',date:'25/05/2025'},
-  {id:35,cat:'Projetos',icon:'💻',color:'#0d2010',title:'Software para projeto de gás: ferramentas usadas',excerpt:'Principais softwares e ferramentas utilizados por engenheiros em projetos de gás.',date:'29/05/2025'},
-  // EQUIPAMENTOS
-  {id:36,cat:'Equipamentos',icon:'🚿',color:'#1a1a2e',title:'Como escolher o aquecedor a gás ideal',excerpt:'Diferenças entre aquecedores de passagem e acumulação, e como dimensionar.',date:'02/06/2025'},
-  {id:37,cat:'Equipamentos',icon:'🍳',color:'#0d1b2a',title:'Fogão a gás: manutenção e regulagem de queimadores',excerpt:'Como manter e regular queimadores de fogão para máxima eficiência e segurança.',date:'06/06/2025'},
-  {id:38,cat:'Equipamentos',icon:'⚙️',color:'#2e1a0a',title:'Regulador de pressão de gás: tipos e aplicações',excerpt:'Diferenças entre reguladores de 1ª e 2ª fase, e como escolher o correto.',date:'10/06/2025'},
-  {id:39,cat:'Equipamentos',icon:'📊',color:'#1a2e42',title:'Medidor de gás digital x analógico: qual instalar?',excerpt:'Comparativo técnico entre medidores analógicos e eletrônicos para gás.',date:'14/06/2025'},
-  {id:40,cat:'Equipamentos',icon:'🔒',color:'#0d2010',title:'Válvulas de segurança para gás: como funcionam',excerpt:'Tipos de válvulas de segurança, onde instalar e manutenção necessária.',date:'18/06/2025'},
-  // VAZAMENTOS
-  {id:41,cat:'Vazamentos',icon:'👃',color:'#2e1a1a',title:'Por que o gás tem cheiro? Entenda o odorizante',excerpt:'A substância adicionada ao gás para detecção de vazamentos e como ela funciona.',date:'22/06/2025'},
-  {id:42,cat:'Vazamentos',icon:'🔍',color:'#1a2010',title:'Equipamentos para detecção de gás: tipos e uso',excerpt:'Detectores eletrônicos, espuma saponácea e outros métodos profissionais.',date:'26/06/2025'},
-  {id:43,cat:'Vazamentos',icon:'🛠️',color:'#0d1b2a',title:'Reparo de vazamento: metodologias técnicas',excerpt:'Técnicas corretas para reparar vazamentos em diferentes tipos de tubulação.',date:'30/06/2025'},
-  {id:44,cat:'Vazamentos',icon:'💧',color:'#1a2e42',title:'Microvazamentos em tubulação de gás: como tratar',excerpt:'Identificação e correção de microvazamentos com resina epóxi sem obras.',date:'04/07/2025'},
-  {id:45,cat:'Vazamentos',icon:'⚠️',color:'#2e1a0a',title:'Principais causas de vazamento de gás em residências',excerpt:'Pontos mais comuns de falha em instalações residenciais e como prevenir.',date:'08/07/2025'},
-];
-
-// ═══════════ RENDER SERVICES ═══════════
-
-const SERVICE_SLUGS = [];
-function renderServices(){
-  const grid = document.getElementById('servicesGrid');
-  grid.innerHTML = ALL_SERVICES.map(function(s,i){
-    return '<div class="service-card" onclick="openServicePage('+i+')" style="cursor:pointer;">'
-      +'<div class="service-icon">'+s.icon+'</div>'
-      +'<h3>'+s.name+'</h3>'
-      +'<p>'+s.desc+'</p>'
-      +'<div style="margin-top:12px;font-size:.8rem;color:var(--flame-light);font-weight:600;">Ver detalhes &#8594;</div>'
-      +'</div>';
-  }).join('');
-}
-
-function renderBlogCats(){
-  const cats = document.getElementById('blogCats');
-  cats.innerHTML = BLOG_CATEGORIES.map(c=>`
-    <button class="cat-btn ${c===activeCategory?'active':''}" onclick="filterCat('${c}')">${c}</button>
-  `).join('');
-}
-
-function getFilteredPosts(){
-  return activeCategory==='Todos' ? BLOG_POSTS : BLOG_POSTS.filter(p=>p.cat===activeCategory);
-}
-
-function renderBlog(){
-  const filtered = getFilteredPosts();
-  const toShow = filtered.slice(0,postsShown);
-  const grid = document.getElementById('blogGrid');
-  grid.innerHTML = toShow.map(p=>`
-    <a class="blog-card" href="#" onclick="openArticle(${p.id});return false;">
-      <div class="blog-card-img" style="background:${p.color};">${p.icon}</div>
-      <div class="blog-card-body">
-        <div class="blog-cat">${p.cat}</div>
-        <h3>${p.title}</h3>
-        <p class="blog-excerpt">${p.excerpt}</p>
-        <div class="blog-footer">
-          <span class="blog-read">Ler artigo →</span>
-          <span class="blog-date">${p.date}</span>
-        </div>
-      </div>
-    </a>
-  `).join('');
-  const btn = document.getElementById('loadMoreBtn');
-  btn.style.display = postsShown >= filtered.length ? 'none' : 'inline-flex';
-}
-
-function filterCat(cat){
-  activeCategory = cat;
-  postsShown = 6;
-  renderBlogCats();
-  renderBlog();
-}
-
-function loadMorePosts(){
-  postsShown += 6;
-  renderBlog();
-}
-
-// ═══════════ ARTICLE CONTENT GENERATOR ═══════════
-const ARTICLE_CONTENT = {
-  1:`<h2>Visão geral do processo</h2>
-<p>A instalação de rede de gás natural (GN) em apartamentos envolve diversas etapas técnicas e documentais. O processo começa com a elaboração do projeto e termina com a vistoria da Comgás para liberação do fornecimento.</p>
-<h2>Etapas da instalação</h2>
-<ul>
-<li>Elaboração do projeto técnico com ART do engenheiro responsável</li>
-<li>Aprovação junto à Comgás via SIGA (Sistema de Gestão de Aprovações)</li>
-<li>Execução da tubulação interna com materiais homologados</li>
-<li>Realização do teste de estanqueidade conforme ABNT NBR 15526</li>
-<li>Emissão do laudo técnico de conclusão</li>
-<li>Vistoria da Comgás e liberação do fornecimento</li>
-</ul>
-<h2>Materiais utilizados</h2>
-<p>Para tubulações internas em apartamentos, os materiais mais utilizados são o cobre rígido (para trechos embutidos e aparentes) e o tubo PEX (para ramais internos). Ambos devem ser aprovados pela ABNT e pela Comgás.</p>
-<h2>Normas aplicáveis</h2>
-<p>A principal norma que rege instalações prediais de gás é a ABNT NBR 15526. Além dela, o SIGA da Comgás estabelece requisitos específicos para instalações na cidade de São Paulo.</p>
-<div class="article-cta-box">
-<h4>Precisa instalar rede de gás?</h4>
-<p>A Gás Network é homologada Comgás e executa projetos completos com ART, laudo e toda documentação necessária.</p>
-<a href="https://wa.me/5511985424462" target="_blank" class="btn-primary" style="display:inline-flex;">💬 Solicitar Orçamento</a>
-</div>`,
-  18:`<h2>O que é aplicação de resina em tubulação de gás?</h2>
-<p>A aplicação de resina epóxi em tubulações de gás é uma tecnologia de revestimento interno que permite vedar microvazamentos e proteger a tubulação sem necessidade de obras civis. O processo consiste em introduzir uma resina de alta performance no interior da tubulação já instalada.</p>
-<h2>Quando é indicada</h2>
-<ul>
-<li>Tubulações com microvazamentos de difícil localização</li>
-<li>Tubos embutidos em alvenaria onde a obra de reparo seria muito invasiva</li>
-<li>Redes antigas com desgaste interno pela passagem do gás</li>
-<li>Tubulações com corrosão interna</li>
-</ul>
-<h2>Como funciona o processo</h2>
-<p>O engenheiro realiza a limpeza e secagem completa da tubulação, introduz a resina epóxi bi-componente no interior, e garante a distribuição uniforme por toda a extensão do ramal. Após a cura da resina, é feito novo teste de estanqueidade para confirmar a vedação.</p>
-<h2>Vantagens</h2>
-<ul>
-<li>Sem necessidade de quebrar paredes ou pisos</li>
-<li>Custo menor que a substituição completa da tubulação</li>
-<li>Alta durabilidade — a resina tem vida útil superior à tubulação original</li>
-<li>Processo limpo e rápido, com mínima interrupção</li>
-</ul>
-<div class="article-cta-box">
-<h4>Tem microvazamento na tubulação?</h4>
-<p>A Gás Network executa o serviço de aplicação de resina epóxi com engenheiro responsável e laudo técnico.</p>
-<a href="https://wa.me/5511985424462" target="_blank" class="btn-primary" style="display:inline-flex;">💬 Falar com Engenheiro</a>
-</div>`,
-};
-
-function getGenericContent(post){
-  return `<h2>Introdução</h2>
-<p>${post.excerpt} Neste artigo, abordamos os aspectos mais importantes sobre o tema, com base nas normas técnicas da ABNT e na experiência prática da equipe de engenharia da Gás Network.</p>
-<h2>Por que este assunto é importante?</h2>
-<p>Sistemas de gás demandam atenção técnica especializada. Instalações fora das normas representam riscos reais de acidentes, além de irregularidades que podem gerar multas e problemas com a concessionária. A Gás Network atua com responsabilidade técnica plena em todos os serviços.</p>
-<h2>Aspectos técnicos</h2>
-<ul>
-<li>Conformidade com ABNT NBR 15526 e normas complementares</li>
-<li>Responsável técnico habilitado no CREA/SP</li>
-<li>ART emitida em todos os serviços executados</li>
-<li>Teste de estanqueidade obrigatório ao final de cada serviço</li>
-<li>Laudo técnico assinado disponível para o contratante</li>
-</ul>
-<h2>Como a Gás Network pode ajudar</h2>
-<p>Com mais de 50 serviços no portfólio, a Gás Network é a parceira ideal para resolver qualquer demanda relacionada a sistemas de gás em São Paulo. Nossa equipe atende 24 horas e está pronta para responder imediatamente a emergências.</p>
-<div class="article-cta-box">
-<h4>Precisa de um profissional?</h4>
-<p>Fale agora com o Eng. Matheus Henrique e obtenha um orçamento sem compromisso.</p>
-<a href="https://wa.me/5511985424462" target="_blank" class="btn-primary" style="display:inline-flex;">💬 Solicitar Orçamento Grátis</a>
-</div>`;
-}
-
-function openArticle(id){
-  const post = BLOG_POSTS.find(p=>p.id===id);
-  if(!post) return;
-  document.getElementById('articleCat').textContent = post.cat;
-  document.getElementById('articleTitle').textContent = post.title;
-  document.getElementById('articleDate').textContent = post.date;
-  document.getElementById('articleBody').innerHTML = ARTICLE_CONTENT[id] || getGenericContent(post);
-  document.getElementById('homePage').style.display='none';
-  document.getElementById('articlePage').classList.add('active');
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-
-function showHome(){
-  document.getElementById('homePage').style.display='block';
-  document.getElementById('articlePage').classList.remove('active');
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-
-// ═══════════ FORM ═══════════
-function sendWhatsApp(){
-  const name = document.querySelector('.contact-form input[type=text]').value || 'Cliente';
-  const service = document.querySelector('.contact-form select').value;
-  const msg = document.querySelector('.contact-form textarea').value;
-  const text = `Olá! Meu nome é ${name}. Interesse: ${service}. ${msg}`;
-  window.open(`https://wa.me/5511985424462?text=${encodeURIComponent(text)}`,'_blank');
-}
-
-// ═══════════ NAV ═══════════
-function toggleNav(){
-  const links = document.getElementById('navLinks');
-  links.style.display = links.style.display==='flex'?'none':'flex';
-  links.style.flexDirection='column';
-  links.style.position='absolute';
-  links.style.top='68px';links.style.left='0';lin
+    ReactDOM.createRoot(document.getElementById("root")).render(<IntegrityTest />);
+  </script>
+</body>
+</html>
