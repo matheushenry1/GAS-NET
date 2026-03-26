@@ -1019,23 +1019,21 @@ const BLOG_POSTS = [
 ];
 
 // ═══════════ RENDER SERVICES ═══════════
-const SERVICE_SLUGS = ["instalacao-rede-gas-gn", "instalacao-rede-gas-glp", "instalacao-tubulacao-cobre", "instalacao-tubulacao-pex", "adequacao-pontos-gas", "criacao-pontos-consumo", "remanejamento-pontos-gas", "substituicao-tubulacao-antiga", "instalacao-prumadas-gas", "instalacao-central-glp", "teste-estanqueidade", "emissao-laudo-tecnico", "vistoria-liberacao-comgas", "inspecao-predial-gas", "deteccao-vazamento-gas", "reparo-vazamentos", "manutencao-preventiva-gas", "adequacao-avcb", "elaboracao-projeto-gas", "consultoria-tecnica-gas", "aplicacao-resina-tubulacao", "ligacao-fogao-gas", "ligacao-cooktop-gas", "ligacao-forno-gas", "ligacao-aquecedor-gas", "conversao-fogao-glp-gn", "conversao-aquecedores", "regulagem-equipamentos-gas", "inspecao-apartamentos", "inspecao-condominios", "manutencao-corretiva-gas", "regularizacao-instalacoes", "substituicao-mangueiras-gas", "instalacao-reguladores-pressao", "instalacao-valvulas-bloqueio", "instalacao-valvulas-seguranca", "instalacao-medidores-gas", "emissao-art", "interligacao-rede-interna", "adequacao-central-glp-norma", "substituicao-conexoes", "limpeza-rede-gas", "instalacao-ramais-gas", "montagem-abrigo-cilindros", "adequacao-normas-abnt", "instalacao-prumadas-gas", "reparo-vazamentos", "manutencao-corretiva-gas", "limpeza-rede-gas", "instalacao-valvulas-seguranca"];
+const SERVICE_SLUGS = ["instalacao-rede-gas-gn","instalacao-rede-gas-glp","instalacao-tubulacao-cobre","instalacao-tubulacao-pex","adequacao-pontos-gas","criacao-pontos-consumo","remanejamento-pontos-gas","substituicao-tubulacao-antiga","instalacao-prumadas-gas","instalacao-central-glp","teste-estanqueidade","emissao-laudo-tecnico","vistoria-liberacao-comgas","inspecao-predial-gas","deteccao-vazamento-gas","reparo-vazamentos","manutencao-preventiva-gas","adequacao-avcb","elaboracao-projeto-gas","consultoria-tecnica-gas","aplicacao-resina-tubulacao","ligacao-fogao-gas","ligacao-cooktop-gas","ligacao-forno-gas","ligacao-aquecedor-gas","conversao-fogao-glp-gn","conversao-aquecedores","regulagem-equipamentos-gas","inspecao-apartamentos","inspecao-condominios","manutencao-corretiva-gas","regularizacao-instalacoes","substituicao-mangueiras-gas","instalacao-reguladores-pressao","instalacao-valvulas-bloqueio","instalacao-valvulas-seguranca","instalacao-medidores-gas","emissao-art","interligacao-rede-interna","adequacao-central-glp-norma","substituicao-conexoes","limpeza-rede-gas","instalacao-ramais-gas","montagem-abrigo-cilindros","adequacao-normas-abnt","instalacao-prumadas-gas","reparo-vazamentos","manutencao-corretiva-gas","limpeza-rede-gas","instalacao-valvulas-seguranca"];
+
 function renderServices(){
   const grid = document.getElementById('servicesGrid');
-  grid.innerHTML = SERVICES.map((s,i)=>{
-    const slug = SERVICE_SLUGS[i] || 'index';
-    return '<a href="'+slug+'.html" class="service-card" style="text-decoration:none;">'
+  grid.innerHTML = SERVICES.map(function(s,i){
+    var slug = SERVICE_SLUGS[i] || 'index';
+    return '<a href="'+slug+'.html" class="service-card" style="text-decoration:none;display:block;">'
       +'<div class="service-icon">'+s.icon+'</div>'
       +'<h3>'+s.name+'</h3>'
       +'<p>'+s.desc+'</p>'
-      +'<div style="margin-top:12px;font-size:.8rem;color:var(--flame-light);font-weight:600;">Ver detalhes &rarr;</div>'
+      +'<div style="margin-top:12px;font-size:.8rem;color:var(--flame-light);font-weight:600;">Ver detalhes &#8594;</div>'
       +'</a>';
   }).join('');
 }
 
-// ═══════════ RENDER BLOG ═══════════
-let activeCategory = 'Todos';
-let postsShown = 6;
 
 function renderBlogCats(){
   const cats = document.getElementById('blogCats');
